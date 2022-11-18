@@ -10,7 +10,9 @@ public class MainPage implements Screen {
 
     @Override
     public void show() {
-        
+
+
+
     }
 
     @Override
