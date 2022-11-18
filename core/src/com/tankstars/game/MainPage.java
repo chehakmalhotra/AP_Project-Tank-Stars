@@ -1,5 +1,6 @@
 package com.tankstars.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import org.w3c.dom.Text;
@@ -15,6 +16,12 @@ public class MainPage implements Screen {
     Texture tank;
     public MainPage(TankStars a){
         this.game = a;
+        settings = new Texture(Gdx.files.internal("settings.png"));
+        Newgame = new Texture(Gdx.files.internal("newgame.png"));
+        exitgame = new Texture(Gdx.files.internal("exitgame.png"));
+        background = new Texture(Gdx.files.internal("background.png"));
+        tankoptions = new Texture(Gdx.files.internal("tankoptions.png"));
+        tank = new Texture(Gdx.files.internal("tank.png"));
     }
 
     @Override
