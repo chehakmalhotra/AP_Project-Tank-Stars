@@ -1,6 +1,7 @@
 package com.tankstars.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -36,6 +37,11 @@ public class HomePage implements Screen {
         //game.batch.draw(hp,0,0);
         sprite.draw(game.batch);
         game.batch.end();
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
+            game.goToMainPage();
+
+        }
+
 
 
     }
