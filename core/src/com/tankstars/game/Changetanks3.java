@@ -1,22 +1,20 @@
 package com.tankstars.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.ScreenUtils;
-import org.w3c.dom.Text;
 
-public class MainPage implements Screen {
+public class Changetanks3 implements Screen {
     final TankStars game;
     Texture settings;
-    Texture Newgame;
-    Texture resumegame;
-    Texture exitgame;
+
+
     Texture background;
-    Texture tankoptions;
+    Texture arrow1;
+    Texture arrow2;
     Texture tank;
 
     OrthographicCamera cam;
@@ -25,26 +23,32 @@ public class MainPage implements Screen {
     Sprite sprite3;
     Sprite sprite4;
     Sprite sprite5;
-    Sprite sprite6;
-    public MainPage(TankStars a){
+
+    public Changetanks3(TankStars a){
         this.game = a;
         settings = new Texture(Gdx.files.internal("settings.png"));
-        Newgame = new Texture(Gdx.files.internal("newgame.png"));
-        exitgame = new Texture(Gdx.files.internal("exitgame.png"));
+
         background = new Texture(Gdx.files.internal("background.png"));
-        tankoptions = new Texture(Gdx.files.internal("tankoptions.png"));
-        tank = new Texture(Gdx.files.internal("tank1.png"));
+        arrow1 = new Texture(Gdx.files.internal("arrow1.png"));
+        arrow2 = new Texture(Gdx.files.internal("arrow2.png"));
+        tank = new Texture(Gdx.files.internal("tank3.png"));
         sprite1 = new Sprite(settings);
-        sprite2 = new Sprite(Newgame);
-        sprite3 = new Sprite(exitgame);
+        sprite2 = new Sprite(arrow1);
+        sprite3 = new Sprite(arrow2);
         sprite4 = new Sprite(background);
-        sprite5 = new Sprite(tankoptions);
-        sprite6 = new Sprite(tank);
+        sprite5 = new Sprite(tank);
+
         sprite4.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-        sprite6.setSize(500, 477);
-        sprite6.setPosition(100,-20);
-        System.out.println(sprite6.getHeight());
-        System.out.println(sprite6.getWidth());
+        System.out.println(sprite5.getHeight());
+        System.out.println(sprite5.getWidth());
+        sprite5.setSize(775, 708);
+        sprite5.setPosition(90,-110);
+        sprite2.setSize(100,100);
+        sprite2.setPosition(800,300);
+
+        sprite3.setSize(100,100);
+        sprite3.setPosition(50,300);
+
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.setToOrtho(false);
 
@@ -70,13 +74,10 @@ public class MainPage implements Screen {
         game.batch.begin();
         //game.batch.draw(hp,0,0);
         sprite4.draw(game.batch);
-        sprite6.draw(game.batch);
+        sprite5.draw(game.batch);
+        sprite2.draw(game.batch);
+        sprite3.draw(game.batch);
         game.batch.end();
-        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-            game.goToChangetanks3();
-
-        }
-
 
     }
 
@@ -105,3 +106,6 @@ public class MainPage implements Screen {
 
     }
 }
+
+
+

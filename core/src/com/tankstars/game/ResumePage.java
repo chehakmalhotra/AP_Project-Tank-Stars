@@ -1,23 +1,25 @@
 package com.tankstars.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.ScreenUtils;
-import org.w3c.dom.Text;
 
-public class MainPage implements Screen {
+public class ResumePage implements Screen {
     final TankStars game;
     Texture settings;
-    Texture Newgame;
-    Texture resumegame;
-    Texture exitgame;
+
+
     Texture background;
-    Texture tankoptions;
-    Texture tank;
+    Texture background2;
+    Texture button1;
+    Texture button2;
+    Texture button3;
+    Texture button4;
+    Texture button5;
+
 
     OrthographicCamera cam;
     Sprite sprite1;
@@ -26,25 +28,44 @@ public class MainPage implements Screen {
     Sprite sprite4;
     Sprite sprite5;
     Sprite sprite6;
-    public MainPage(TankStars a){
+    Sprite sprite7;
+    Sprite sprite8;
+
+    public ResumePage(TankStars a){
         this.game = a;
         settings = new Texture(Gdx.files.internal("settings.png"));
-        Newgame = new Texture(Gdx.files.internal("newgame.png"));
-        exitgame = new Texture(Gdx.files.internal("exitgame.png"));
+
         background = new Texture(Gdx.files.internal("background.png"));
-        tankoptions = new Texture(Gdx.files.internal("tankoptions.png"));
-        tank = new Texture(Gdx.files.internal("tank1.png"));
+        background2 = new Texture(Gdx.files.internal("background2.png"));
+
+        button1 = new Texture(Gdx.files.internal("tank3.png"));
+        button2 = new Texture(Gdx.files.internal("tank3.png"));
+        button3 = new Texture(Gdx.files.internal("tank3.png"));
+        button4 = new Texture(Gdx.files.internal("tank3.png"));
+        button5 = new Texture(Gdx.files.internal("tank3.png"));
+
+
+
         sprite1 = new Sprite(settings);
-        sprite2 = new Sprite(Newgame);
-        sprite3 = new Sprite(exitgame);
+        sprite2 = new Sprite(button1);
+        sprite3 = new Sprite(button2);
         sprite4 = new Sprite(background);
-        sprite5 = new Sprite(tankoptions);
-        sprite6 = new Sprite(tank);
+        sprite5 = new Sprite(background2);
+        sprite6 = new Sprite(button3);
+        sprite7 = new Sprite(button4);
+        sprite8 = new Sprite(button5);
+
         sprite4.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-        sprite6.setSize(500, 477);
-        sprite6.setPosition(100,-20);
-        System.out.println(sprite6.getHeight());
-        System.out.println(sprite6.getWidth());
+        System.out.println(sprite5.getHeight());
+        System.out.println(sprite5.getWidth());
+        sprite5.setSize(775, 708);
+        sprite5.setPosition(90,-110);
+        sprite2.setSize(100,100);
+        sprite2.setPosition(800,300);
+
+        sprite3.setSize(100,100);
+        sprite3.setPosition(50,300);
+
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.setToOrtho(false);
 
@@ -70,13 +91,10 @@ public class MainPage implements Screen {
         game.batch.begin();
         //game.batch.draw(hp,0,0);
         sprite4.draw(game.batch);
-        sprite6.draw(game.batch);
+        sprite5.draw(game.batch);
+        sprite2.draw(game.batch);
+        sprite3.draw(game.batch);
         game.batch.end();
-        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-            game.goToChangetanks3();
-
-        }
-
 
     }
 
@@ -105,3 +123,7 @@ public class MainPage implements Screen {
 
     }
 }
+
+
+
+
