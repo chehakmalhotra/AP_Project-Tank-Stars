@@ -18,6 +18,10 @@ public class TankStars extends Game {
 		MainPage mp = new MainPage(this);
 		setScreen(mp);
 	}
+	public void goToChangetanks1(){
+		Changetanks1 ct1= new Changetanks1(this);
+		setScreen(ct1);
+	}
 	@Override
 	public void render () {
 		 super.render();

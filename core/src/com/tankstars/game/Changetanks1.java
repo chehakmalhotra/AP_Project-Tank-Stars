@@ -24,13 +24,13 @@ public class Changetanks1 implements Screen {
     Sprite sprite4;
     Sprite sprite5;
 
-    public MainPage(TankStars a){
+    public Changetanks1(TankStars a){
         this.game = a;
         settings = new Texture(Gdx.files.internal("settings.png"));
 
         background = new Texture(Gdx.files.internal("background.png"));
-        arrow1 = new Texture(Gdx.files.internal("arrow.png"));
-        arrow2 = new Texture(Gdx.files.internal("arrow.png"));
+        arrow1 = new Texture(Gdx.files.internal("arrow1.png"));
+        arrow2 = new Texture(Gdx.files.internal("arrow2.png"));
         tank = new Texture(Gdx.files.internal("tank1.png"));
         sprite1 = new Sprite(settings);
         sprite2 = new Sprite(arrow1);
@@ -39,8 +39,13 @@ public class Changetanks1 implements Screen {
         sprite5 = new Sprite(tank);
 
         sprite4.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-        sprite5.setSize(500, 477);
-        sprite5.setPosition(100,-20);
+        sprite5.setSize(660, 590);
+        sprite5.setPosition(150,-60);
+        sprite2.setSize(100,100);
+        sprite2.setPosition(800,300);
+
+        sprite3.setSize(100,100);
+        sprite3.setPosition(50,300);
 
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.setToOrtho(false);
@@ -68,6 +73,8 @@ public class Changetanks1 implements Screen {
         //game.batch.draw(hp,0,0);
         sprite4.draw(game.batch);
         sprite5.draw(game.batch);
+        sprite2.draw(game.batch);
+        sprite3.draw(game.batch);
         game.batch.end();
 
     }
@@ -99,4 +106,4 @@ public class Changetanks1 implements Screen {
 }
 
 
-}
+
