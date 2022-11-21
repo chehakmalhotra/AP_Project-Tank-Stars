@@ -1,6 +1,7 @@
 package com.tankstars.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -76,6 +77,10 @@ public class Changetanks1 implements Screen {
         sprite2.draw(game.batch);
         sprite3.draw(game.batch);
         game.batch.end();
+        if(Gdx.input.isKeyPressed(Input.Keys.A)){
+            game.goToResumePage();
+
+        }
 
     }
 

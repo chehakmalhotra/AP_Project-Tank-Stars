@@ -30,6 +30,14 @@ public class TankStars extends Game {
 		Changetanks3 ct3= new Changetanks3(this);
 		setScreen(ct3);
 	}
+
+	public void goToResumePage(){
+		ResumePage rp= new ResumePage(this);
+		setScreen(rp);
+	}
+
+
+
 	@Override
 	public void render () {
 		 super.render();

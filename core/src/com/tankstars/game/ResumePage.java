@@ -38,11 +38,11 @@ public class ResumePage implements Screen {
         background = new Texture(Gdx.files.internal("background.png"));
         background2 = new Texture(Gdx.files.internal("background2.png"));
 
-        button1 = new Texture(Gdx.files.internal("tank3.png"));
-        button2 = new Texture(Gdx.files.internal("tank3.png"));
-        button3 = new Texture(Gdx.files.internal("tank3.png"));
-        button4 = new Texture(Gdx.files.internal("tank3.png"));
-        button5 = new Texture(Gdx.files.internal("tank3.png"));
+        button1 = new Texture(Gdx.files.internal("savedgame1.png"));
+        button2 = new Texture(Gdx.files.internal("savedgame2.png"));
+        button3 = new Texture(Gdx.files.internal("savedgame3.png"));
+        button4 = new Texture(Gdx.files.internal("savedgame4.png"));
+
 
 
 
@@ -58,13 +58,9 @@ public class ResumePage implements Screen {
         sprite4.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         System.out.println(sprite5.getHeight());
         System.out.println(sprite5.getWidth());
-        sprite5.setSize(775, 708);
+        sprite5.setSize(775, 600);
         sprite5.setPosition(90,-110);
-        sprite2.setSize(100,100);
-        sprite2.setPosition(800,300);
 
-        sprite3.setSize(100,100);
-        sprite3.setPosition(50,300);
 
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.setToOrtho(false);
@@ -92,8 +88,7 @@ public class ResumePage implements Screen {
         //game.batch.draw(hp,0,0);
         sprite4.draw(game.batch);
         sprite5.draw(game.batch);
-        sprite2.draw(game.batch);
-        sprite3.draw(game.batch);
+
         game.batch.end();
 
     }
