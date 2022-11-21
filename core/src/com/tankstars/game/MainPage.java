@@ -73,7 +73,7 @@ public class MainPage implements Screen {
         sprite6.draw(game.batch);
         game.batch.end();
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-            game.goToMainPage();
+            game.goToChangetanks3();
 
         }
 

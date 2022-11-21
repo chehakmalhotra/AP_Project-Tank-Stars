@@ -22,6 +22,14 @@ public class TankStars extends Game {
 		Changetanks1 ct1= new Changetanks1(this);
 		setScreen(ct1);
 	}
+	public void goToChangetanks2(){
+		Changetanks2 ct2= new Changetanks2(this);
+		setScreen(ct2);
+	}
+	public void goToChangetanks3(){
+		Changetanks3 ct3= new Changetanks3(this);
+		setScreen(ct3);
+	}
 	@Override
 	public void render () {
 		 super.render();

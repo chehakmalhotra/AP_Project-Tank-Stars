@@ -39,8 +39,10 @@ public class Changetanks3 implements Screen {
         sprite5 = new Sprite(tank);
 
         sprite4.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-        sprite5.setSize(660, 590);
-        sprite5.setPosition(150,-60);
+        System.out.println(sprite5.getHeight());
+        System.out.println(sprite5.getWidth());
+        sprite5.setSize(775, 708);
+        sprite5.setPosition(90,-110);
         sprite2.setSize(100,100);
         sprite2.setPosition(800,300);
 
