@@ -40,8 +40,8 @@ public class MainPage implements Screen {
         sprite5 = new Sprite(tankoptions);
         sprite6 = new Sprite(tank);
         sprite4.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-        sprite6.setSize(600, 572);
-        sprite6.setPosition(0,-50);
+        sprite6.setSize(500, 477);
+        sprite6.setPosition(100,-20);
         System.out.println(sprite6.getHeight());
         System.out.println(sprite6.getWidth());
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
