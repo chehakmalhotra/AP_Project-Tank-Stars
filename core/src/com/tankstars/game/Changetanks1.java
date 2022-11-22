@@ -77,8 +77,8 @@ public class Changetanks1 implements Screen {
         sprite2.draw(game.batch);
         sprite3.draw(game.batch);
         game.batch.end();
-        if(Gdx.input.isKeyPressed(Input.Keys.A)){
-            game.goToResumePage();
+        if(Gdx.input.isKeyPressed(Input.Keys.B)){
+            game.goToChangetanks3();
 
         }
 
