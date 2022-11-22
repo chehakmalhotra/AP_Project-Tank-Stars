@@ -49,6 +49,9 @@ public class Changetanks2 implements Screen {
         sprite3.setSize(100,100);
         sprite3.setPosition(50,300);
 
+        sprite1.setSize(60,60);
+        sprite1.setPosition(20,470);
+
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.setToOrtho(false);
 
@@ -77,6 +80,7 @@ public class Changetanks2 implements Screen {
         sprite5.draw(game.batch);
         sprite2.draw(game.batch);
         sprite3.draw(game.batch);
+        sprite1.draw(game.batch);
         game.batch.end();
 
     }

@@ -40,13 +40,16 @@ public class Changetanks1 implements Screen {
         sprite5 = new Sprite(tank);
 
         sprite4.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-        sprite5.setSize(660, 590);
-        sprite5.setPosition(150,-60);
+        sprite5.setSize(560, 520);
+        sprite5.setPosition(200,-30);
         sprite2.setSize(100,100);
         sprite2.setPosition(800,300);
 
         sprite3.setSize(100,100);
         sprite3.setPosition(50,300);
+
+        sprite1.setSize(60,60);
+        sprite1.setPosition(20,470);
 
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.setToOrtho(false);
@@ -76,6 +79,7 @@ public class Changetanks1 implements Screen {
         sprite5.draw(game.batch);
         sprite2.draw(game.batch);
         sprite3.draw(game.batch);
+        sprite1.draw(game.batch);
         game.batch.end();
         if(Gdx.input.isKeyPressed(Input.Keys.B)){
             game.goToChangetanks3();

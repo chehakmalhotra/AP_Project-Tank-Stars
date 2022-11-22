@@ -104,7 +104,7 @@ public class ResumePage implements Screen {
         game.batch.setProjectionMatrix(cam.combined);
         game.batch.begin();
         //game.batch.draw(hp,0,0);
-        sprite1.draw(game.batch);
+
         sprite2.draw(game.batch);
         sprite3.draw(game.batch);
 
@@ -112,6 +112,7 @@ public class ResumePage implements Screen {
         sprite5.draw(game.batch);
         sprite6.draw(game.batch);
         sprite7.draw(game.batch);
+        sprite1.draw(game.batch);
 
 
 
