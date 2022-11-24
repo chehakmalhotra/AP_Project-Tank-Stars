@@ -133,7 +133,7 @@ public class Changetanks2 implements Screen {
             Rectangle choose = new Rectangle(590,370,256,70);
             Rectangle arrowR = new Rectangle(925,200,30,30);
             Rectangle arrowL = new Rectangle(560,200,30,30);
-            Rectangle sg =new Rectangle(650,180,256,70);
+            Rectangle set =new Rectangle(20,20,60,60);
             if(play.contains(tmp.x,tmp.y)){
                 game.goToHomePage();
             }
@@ -146,8 +146,8 @@ public class Changetanks2 implements Screen {
             if(arrowL.contains(tmp.x,tmp.y)){
                 game.goToChangetanks1();
             }
-            if(sg.contains(tmp.x,tmp.y)){
-                game.goToHomePage();
+            if(set.contains(tmp.x,tmp.y)){
+                game.goToSettings();
             }
 
           }

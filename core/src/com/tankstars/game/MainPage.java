@@ -116,7 +116,7 @@ public class MainPage implements Screen {
                 game.goToHomePage();
             }
             if(set.contains(tmp.x,tmp.y)){
-                game.goToHomePage();
+                game.goToSettings();
             }
         }
     }

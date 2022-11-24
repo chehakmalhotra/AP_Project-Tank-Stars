@@ -2,6 +2,7 @@ package com.tankstars.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -19,6 +20,12 @@ public class TankStars extends Game {
 		setScreen(mp);
 	}public void goToHomePage(){
 		this.setScreen(new HomePage(this));
+	}
+	public void goToSettings(){
+		this.setScreen(new Settings(this));
+	}
+	public void ret(Screen m){
+		this.setScreen(m);
 	}
 	public void goToChangetanks1(){
 		Changetanks1 ct1= new Changetanks1(this);
