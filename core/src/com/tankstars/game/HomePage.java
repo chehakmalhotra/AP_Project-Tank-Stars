@@ -15,7 +15,7 @@ public class HomePage implements Screen {
     Sprite sprite;
     public HomePage(TankStars a) {
         this.game = a;
-        hp = new Texture(Gdx.files.internal("HomePage.png"));
+        hp = new Texture(Gdx.files.internal("HomePage (2).png"));
         sprite = new Sprite(hp);
         sprite.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -39,8 +39,10 @@ public class HomePage implements Screen {
         game.batch.end();
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
             game.goToMainPage();
-
         }
+//        if(Gdx.input.isKeyPressed(Input.Keys.A)){
+//            game.goToVictory();
+//        }
 
 
 
