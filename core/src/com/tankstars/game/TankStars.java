@@ -17,6 +17,8 @@ public class TankStars extends Game {
 	public void goToMainPage(){
 		MainPage mp = new MainPage(this);
 		setScreen(mp);
+	}public void goToHomePage(){
+		this.setScreen(new HomePage(this));
 	}
 	public void goToChangetanks1(){
 		Changetanks1 ct1= new Changetanks1(this);

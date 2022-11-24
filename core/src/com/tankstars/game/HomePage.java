@@ -40,12 +40,6 @@ public class HomePage implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
             game.goToMainPage();
         }
-//        if(Gdx.input.isKeyPressed(Input.Keys.A)){
-//            game.goToVictory();
-//        }
-
-
-
     }
 
     @Override
