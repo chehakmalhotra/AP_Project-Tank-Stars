@@ -12,24 +12,23 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import org.w3c.dom.Text;
 
 public class MainPage implements Screen {
-    final TankStars GAME;
-    Texture settings;
-    Texture NewGAME;
-    Texture savedGAMEs;
-    Texture exitGAME;
-    Texture background;
-    Texture tank;
-    Texture menu;
-
-    OrthographicCamera cam;
-    Sprite sprite1;
-    Sprite sprite2;
-    Sprite sprite3;
-    Sprite sprite4;
-    Sprite sprite5;
-    Sprite sprite6;
-    Sprite sprite7;
-    Sprite sprite8;
+    private final TankStars GAME;
+    private Texture settings;
+    private Texture NewGAME;
+    private Texture savedGAMEs;
+    private Texture exitGAME;
+    private Texture background;
+    private Texture tank;
+    private Texture menu;
+    private OrthographicCamera cam;
+    private Sprite sprite1;
+    private Sprite sprite2;
+    private Sprite sprite3;
+    private Sprite sprite4;
+    private Sprite sprite5;
+    private Sprite sprite6;
+    private Sprite sprite7;
+    private Sprite sprite8;
     public MainPage(TankStars a){
         this.GAME = a;
         settings = new Texture(Gdx.files.internal("icons/settings.png"));

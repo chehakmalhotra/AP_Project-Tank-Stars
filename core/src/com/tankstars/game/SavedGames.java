@@ -10,29 +10,26 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class SavedGames implements Screen {
-    final TankStars GAME;
-    Texture settings;
+    private final TankStars GAME;
+    private Texture settings;
+    private Texture background1;
+    private Texture background2;
+    private Texture button1;
+    private Texture button2;
+    private Texture button3;
+    private Texture button4;
+    private Texture cross;
 
 
-    Texture background1;
-    Texture background2;
-    Texture button1;
-    Texture button2;
-    Texture button3;
-    Texture button4;
-    Texture cross;
-
-
-    OrthographicCamera cam;
-    Sprite sprite1;
-    Sprite sprite2;
-    Sprite sprite3;
-    Sprite sprite4;
-    Sprite sprite5;
-    Sprite sprite6;
-    Sprite sprite7;
-    Sprite sprite8;
-
+    private OrthographicCamera cam;
+    private Sprite sprite1;
+    private Sprite sprite2;
+    private Sprite sprite3;
+    private Sprite sprite4;
+    private Sprite sprite5;
+    private Sprite sprite6;
+    private Sprite sprite7;
+    private Sprite sprite8;
     public SavedGames(TankStars a){
         this.GAME = a;
         settings = new Texture(Gdx.files.internal("icons/settings.png"));

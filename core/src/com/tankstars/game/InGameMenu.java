@@ -9,20 +9,20 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class InGameMenu implements Screen {
-    final TankStars GAME;
-    Texture background;
-    Texture menu;
-    Texture ground;
-    Texture mainmenu;
-    Texture resume;
-    Texture savegame;
-    Sprite sprite1;
-    Sprite sprite2;
-    Sprite sprite3;
-    Sprite sprite4;
-    Sprite sprite5;
-    Sprite sprite6;
-    OrthographicCamera cam;
+    private final TankStars GAME;
+    private Texture background;
+    private Texture menu;
+    private Texture ground;
+    private Texture mainmenu;
+    private Texture resume;
+    private Texture savegame;
+    private Sprite sprite1;
+    private Sprite sprite2;
+    private Sprite sprite3;
+    private Sprite sprite4;
+    private Sprite sprite5;
+    private Sprite sprite6;
+    private OrthographicCamera cam;
     public InGameMenu(TankStars a){
         this.GAME = a;
         ground = new Texture(Gdx.files.internal("Ground.png"));

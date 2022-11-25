@@ -9,10 +9,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class HomePage implements Screen {
-    final TankStars GAME;
-    OrthographicCamera cam;
-    Texture hp;
-    Sprite sprite;
+    private final TankStars GAME;
+    private OrthographicCamera cam;
+    private Texture hp;
+    private Sprite sprite;
     public HomePage(TankStars a) {
         this.GAME = a;
         hp = new Texture(Gdx.files.internal("HomePage (2).png"));

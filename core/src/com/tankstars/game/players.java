@@ -9,18 +9,18 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class players implements Screen {
-    Texture background;
-    Texture player1;
-    Texture player2;
-    Texture settings;
-    Texture play;
-    Sprite sprite1;
-    Sprite sprite2;
-    Sprite sprite3;
-    Sprite sprite4;
-    Sprite sprite5;
-    OrthographicCamera cam;
-    final TankStars GAME;
+    private Texture background;
+    private Texture player1;
+    private Texture player2;
+    private Texture settings;
+    private Texture play;
+    private Sprite sprite1;
+    private Sprite sprite2;
+    private Sprite sprite3;
+    private Sprite sprite4;
+    private Sprite sprite5;
+    private OrthographicCamera cam;
+    private final TankStars GAME;
     public players(TankStars a){
         this.GAME = a;
         background = new Texture(Gdx.files.internal("background.png"));
