@@ -2,9 +2,11 @@ package com.tankstars.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -25,10 +27,15 @@ public class Settings implements Screen {
     Sprite sprite5;
     Sprite sprite6;
     Sprite sprite7;
+    Sprite extra;
+    SpriteBatch batch;
+    SpriteBatch batch1;
     boolean flag1 = true;
     boolean flag2 = true;
-    public Settings(TankStars a){
+    private Screen ret;
+    public Settings(TankStars a,Screen m){
         this.GAME = a;
+        this.ret = m;
         background = new Texture(Gdx.files.internal("background.png"));
         cross = new Texture(Gdx.files.internal("Icons/close.png"));
         soundN = new Texture(Gdx.files.internal("buttons/SoundOFF.png"));
@@ -76,6 +83,14 @@ public class Settings implements Screen {
         this.flag2 = flag2;
     }
 
+    public boolean isFlag1() {
+        return flag1;
+    }
+
+    public boolean isFlag2() {
+        return flag2;
+    }
+
     @Override
     public void show() {
 
@@ -89,14 +104,52 @@ public class Settings implements Screen {
         sprite1.draw(GAME.batch);
         sprite7.draw(GAME.batch);
         sprite2.draw(GAME.batch);
-        sprite6.draw(GAME.batch);
-        sprite4.draw(GAME.batch);
+        if(this.isFlag1()){
+            sprite6.draw(GAME.batch);
+        }
+        else{
+            sprite5.draw(GAME.batch);
+        }
+        if(this.isFlag2()) {
+            sprite4.draw(GAME.batch);
+        }
+        else{
+            sprite3.draw(GAME.batch);
+        }
         if(Gdx.input.isTouched()){
             Vector2 tmp =  new Vector2(Gdx.input.getX(), Gdx.input.getY());
-            Rectangle music = new Rectangle(370,600,266,70);
-            if(music.contains(tmp.x,tmp.y)){
+            Rectangle music = new Rectangle(370,180,266,70);
+            Rectangle sound = new Rectangle(370,270,266,70);
+            Rectangle cross = new Rectangle(615,60,20,20);
+            if(music.contains(tmp.x,tmp.y) && this.isFlag1()){
+//                sprite5.draw(GAME.batch);
+                extra = sprite6;
+                //batch.begin();
+                sprite6 = sprite5;
+                sprite6.draw(GAME.batch);
+                //batch.end();
                 this.setFlag1(false);
-                sprite5.draw(GAME.batch);
+            }
+            else if(music.contains(tmp.x,tmp.y) && !this.isFlag1()){
+//                Color def = new Color(0x00ffffffff);
+//                sprite6.setColor(def);
+//                sprite5.setColor(1,0,0,0.2f);
+                //batch1.begin();
+                sprite6 = extra;
+                sprite6.draw(GAME.batch);
+                //batch1.end();
+                this.setFlag1(true);
+            }
+            if(sound.contains(tmp.x,tmp.y) && this.isFlag2()){
+                sprite3.draw(GAME.batch);
+                this.setFlag2(false);
+            }
+            else if(sound.contains(tmp.x, tmp.y) && !this.isFlag2()){
+                sprite4.draw(GAME.batch);
+                this.setFlag2(true);
+            }
+            if(cross.contains(tmp.x, tmp.y)){
+                GAME.ret(ret);
             }
         }
         GAME.batch.end();
@@ -124,6 +177,5 @@ public class Settings implements Screen {
 
     @Override
     public void dispose() {
-
     }
 }

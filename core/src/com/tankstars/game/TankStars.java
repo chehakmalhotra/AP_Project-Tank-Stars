@@ -21,10 +21,11 @@ public class TankStars extends Game {
 	}public void goToHomePage(){
 		this.setScreen(new HomePage(this));
 	}
-	public void goToSettings(){
-		this.setScreen(new Settings(this));
+	public void goToSettings(Screen m){
+		this.setScreen(new Settings(this,m));
 	}
 	public void ret(Screen m){
+
 		this.setScreen(m);
 	}
 	public void goToChangetanks1(){

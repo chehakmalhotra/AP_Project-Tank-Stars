@@ -140,7 +140,7 @@ public class Changetanks1 implements Screen {
                 game.goToChangetanks2();
             }
             if(set.contains(tmp.x,tmp.y)){
-                game.goToSettings();
+                game.goToSettings(this);
             }
 
         }

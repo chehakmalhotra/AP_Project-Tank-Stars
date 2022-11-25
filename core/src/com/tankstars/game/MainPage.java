@@ -113,10 +113,10 @@ public class MainPage implements Screen {
                 game.goToChangetanks1();
             }
             if(sg.contains(tmp.x,tmp.y)){
-                game.goToHomePage();
+                game.goToResumePage();
             }
             if(set.contains(tmp.x,tmp.y)){
-                game.goToSettings();
+                game.goToSettings(this);
             }
         }
     }
