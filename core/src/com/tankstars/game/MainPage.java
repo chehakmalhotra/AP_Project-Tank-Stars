@@ -18,10 +18,8 @@ public class MainPage implements Screen {
     Texture savedgames;
     Texture exitgame;
     Texture background;
-    Texture tankoptions;
     Texture tank;
     Texture menu;
-    Texture resume;
 
     OrthographicCamera cam;
     Sprite sprite1;
@@ -38,7 +36,6 @@ public class MainPage implements Screen {
         Newgame = new Texture(Gdx.files.internal("buttons/NewGame.png"));
         exitgame = new Texture(Gdx.files.internal("buttons/ExitGame.png"));
         background = new Texture(Gdx.files.internal("background.png"));
-        tankoptions = new Texture(Gdx.files.internal("buttons/TankOptions.png"));
         menu = new Texture(Gdx.files.internal("menus/main.png"));
         tank = new Texture(Gdx.files.internal("abrams.png"));
         savedgames = new Texture(Gdx.files.internal("buttons/SavedGames.png"));
@@ -46,7 +43,6 @@ public class MainPage implements Screen {
         sprite2 = new Sprite(Newgame);
         sprite3 = new Sprite(exitgame);
         sprite4 = new Sprite(background);
-        sprite5 = new Sprite(tankoptions);
         sprite6 = new Sprite(tank);
         sprite7 = new Sprite(menu);
         sprite8 = new Sprite(savedgames);
@@ -143,6 +139,5 @@ public class MainPage implements Screen {
 
     @Override
     public void dispose() {
-
     }
 }

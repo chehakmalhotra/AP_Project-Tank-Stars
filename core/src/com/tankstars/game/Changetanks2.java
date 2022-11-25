@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class Changetanks2 implements Screen {
-    final TankStars game;
+    final TankStars GAME;
     Texture settings;
     Texture background;
     Texture arrowL;
@@ -37,7 +37,7 @@ public class Changetanks2 implements Screen {
     Sprite sprite11;
 
     public Changetanks2(TankStars a){
-        this.game = a;
+        this.GAME = a;
         settings = new Texture(Gdx.files.internal("Icons/settings.png"));
         background = new Texture(Gdx.files.internal("background.png"));
         arrowL = new Texture(Gdx.files.internal("icons/right.png"));
@@ -106,26 +106,26 @@ public class Changetanks2 implements Screen {
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
         cam.update();
-        game.batch.setProjectionMatrix(cam.combined);
-        game.batch.begin();
-        //game.batch.draw(hp,0,0);
-        sprite4.draw(game.batch);
-        sprite6.draw(game.batch);
-        sprite5.draw(game.batch);
-        sprite2.draw(game.batch);
-        sprite3.draw(game.batch);
-        sprite1.draw(game.batch);
-        sprite11.draw(game.batch);
-        sprite7.draw(game.batch);
-        sprite8.draw(game.batch);
-       // sprite9.draw(game.batch);
-        sprite10.draw(game.batch);
-        game.batch.end();
+        GAME.batch.setProjectionMatrix(cam.combined);
+        GAME.batch.begin();
+        //GAME.batch.draw(hp,0,0);
+        sprite4.draw(GAME.batch);
+        sprite6.draw(GAME.batch);
+        sprite5.draw(GAME.batch);
+        sprite2.draw(GAME.batch);
+        sprite3.draw(GAME.batch);
+        sprite1.draw(GAME.batch);
+        sprite11.draw(GAME.batch);
+        sprite7.draw(GAME.batch);
+        sprite8.draw(GAME.batch);
+       // sprite9.draw(GAME.batch);
+        sprite10.draw(GAME.batch);
+        GAME.batch.end();
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)){
-            game.goToChangetanks1();
+            GAME.goToChangetanks1();
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)){
-            game.goToChangetanks3();
+            GAME.goToChangetanks3();
         }
         if(Gdx.input.isTouched()){
             Vector2 tmp =  new Vector2(Gdx.input.getX(), Gdx.input.getY());
@@ -135,19 +135,19 @@ public class Changetanks2 implements Screen {
             Rectangle arrowL = new Rectangle(560,200,30,30);
             Rectangle set =new Rectangle(20,20,60,60);
 //            if(play.contains(tmp.x,tmp.y)){
-//                game.goToGamePage();
+//                GAME.goToGAMEPage();
 //            }
             if(choose.contains(tmp.x,tmp.y)){
-                game.goToPlayers();
+                GAME.goToPlayers();
             }
             if(arrowR.contains(tmp.x,tmp.y)){
-                game.goToChangetanks3();
+                GAME.goToChangetanks3();
             }
             if(arrowL.contains(tmp.x,tmp.y)){
-                game.goToChangetanks1();
+                GAME.goToChangetanks1();
             }
             if(set.contains(tmp.x,tmp.y)){
-                game.goToSettings(this);
+                GAME.goToSettings(this);
             }
 
           }

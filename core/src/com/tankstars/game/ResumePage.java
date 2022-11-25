@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class ResumePage implements Screen {
-    final TankStars game;
+    final TankStars GAME;
     Texture settings;
 
 
@@ -35,16 +35,16 @@ public class ResumePage implements Screen {
     Sprite sprite8;
 
     public ResumePage(TankStars a){
-        this.game = a;
+        this.GAME = a;
         settings = new Texture(Gdx.files.internal("icons/settings.png"));
 
         background1 = new Texture(Gdx.files.internal("background.png"));
         background2 = new Texture(Gdx.files.internal("menus/Group 20.png"));
 
-        button1 = new Texture(Gdx.files.internal("buttons/SavedGame1.png"));
-        button2 = new Texture(Gdx.files.internal("buttons/SavedGame2.png"));
-        button3 = new Texture(Gdx.files.internal("buttons/SavedGame3.png"));
-        button4 = new Texture(Gdx.files.internal("buttons/SavedGame4.png"));
+        button1 = new Texture(Gdx.files.internal("buttons/SavedGAME1.png"));
+        button2 = new Texture(Gdx.files.internal("buttons/SavedGAME2.png"));
+        button3 = new Texture(Gdx.files.internal("buttons/SavedGAME3.png"));
+        button4 = new Texture(Gdx.files.internal("buttons/SavedGAME4.png"));
         cross = new Texture(Gdx.files.internal("Icons/close.png"));
         sprite1 = new Sprite(settings);
         sprite2 = new Sprite(background1);
@@ -93,29 +93,29 @@ public class ResumePage implements Screen {
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
         cam.update();
-        game.batch.setProjectionMatrix(cam.combined);
-        game.batch.begin();
-        //game.batch.draw(hp,0,0);
+        GAME.batch.setProjectionMatrix(cam.combined);
+        GAME.batch.begin();
+        //GAME.batch.draw(hp,0,0);
 
-        sprite2.draw(game.batch);
-        sprite3.draw(game.batch);
+        sprite2.draw(GAME.batch);
+        sprite3.draw(GAME.batch);
 
-        sprite4.draw(game.batch);
-        sprite5.draw(game.batch);
-        sprite6.draw(game.batch);
-        sprite7.draw(game.batch);
-        sprite1.draw(game.batch);
-        sprite8.draw(game.batch);
-        game.batch.end();
+        sprite4.draw(GAME.batch);
+        sprite5.draw(GAME.batch);
+        sprite6.draw(GAME.batch);
+        sprite7.draw(GAME.batch);
+        sprite1.draw(GAME.batch);
+        sprite8.draw(GAME.batch);
+        GAME.batch.end();
         if(Gdx.input.isTouched()) {
             Vector2 tmp = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Rectangle set = new Rectangle(20, 20, 60, 60);
             Rectangle cross = new Rectangle(615,35,20,20);
             if (set.contains(tmp.x, tmp.y)) {
-                game.goToSettings(this);
+                GAME.goToSettings(this);
             }
             if(cross.contains(tmp.x, tmp.y)){
-               game.goToMainPage();
+               GAME.goToMainPage();
             }
         }
     }
