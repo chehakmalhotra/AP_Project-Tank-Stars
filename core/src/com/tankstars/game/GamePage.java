@@ -20,6 +20,7 @@ public class GamePage implements Screen {
     Texture healthbar2;
     Texture fire;
     Texture vs;
+    Texture fuel;
     Texture power;
     Texture angle;
     Sprite sprite1;
@@ -34,6 +35,7 @@ public class GamePage implements Screen {
     Sprite sprite10;
     Sprite sprite11;
     Sprite sprite12;
+    Sprite sprite13;
     OrthographicCamera cam;
     public GamePage(TankStars a){
         this.GAME = a;
@@ -48,6 +50,7 @@ public class GamePage implements Screen {
         vs = new Texture(Gdx.files.internal("Icons/vs.png"));
         power = new Texture(Gdx.files.internal("Icons/power.png"));
         angle = new Texture(Gdx.files.internal("Icons/angle.png"));
+        fuel = new Texture(Gdx.files.internal("Icons/fuel.png"));
         fire = new Texture(Gdx.files.internal("buttons/fire.png"));
         sprite1 = new Sprite(ground);
         sprite2 = new Sprite(background);
@@ -61,6 +64,7 @@ public class GamePage implements Screen {
         sprite10 = new Sprite(fire);
         sprite11 = new Sprite(power);
         sprite12 = new Sprite(angle);
+        sprite13 = new Sprite(fuel);
         sprite2.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         //ground
         sprite1.setSize(1000,300);
@@ -98,6 +102,9 @@ public class GamePage implements Screen {
         //angle
         sprite12.setSize(78,50);
         sprite12.setPosition(120,250);
+        //fuel
+        sprite13.setSize(145,25);
+        sprite13.setPosition(150,160);
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.setToOrtho(false);
     }
@@ -123,6 +130,7 @@ public class GamePage implements Screen {
         sprite10.draw(GAME.batch);
         sprite11.draw(GAME.batch);
         sprite12.draw(GAME.batch);
+        sprite13.draw(GAME.batch);
         GAME.batch.end();
         if(Gdx.input.isTouched()) {
             Vector2 tmp = new Vector2(Gdx.input.getX(), Gdx.input.getY());
