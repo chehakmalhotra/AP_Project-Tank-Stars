@@ -20,9 +20,9 @@ public class players implements Screen {
     Sprite sprite4;
     Sprite sprite5;
     OrthographicCamera cam;
-    final TankStars game;
+    final TankStars GAME;
     public players(TankStars a){
-        this.game = a;
+        this.GAME = a;
         background = new Texture(Gdx.files.internal("background.png"));
         player1 = new Texture(Gdx.files.internal("buttons/Player1.png"));
         player2 = new Texture(Gdx.files.internal("buttons/Player2.png"));
@@ -56,14 +56,14 @@ public class players implements Screen {
     @Override
     public void render(float delta) {
         cam.update();
-        game.batch.setProjectionMatrix(cam.combined);
-        game.batch.begin();
-        sprite1.draw(game.batch);
-        sprite2.draw(game.batch);
-        sprite3.draw(game.batch);
-        sprite4.draw(game.batch);
-        sprite5.draw(game.batch);
-        game.batch.end();
+        GAME.batch.setProjectionMatrix(cam.combined);
+        GAME.batch.begin();
+        sprite1.draw(GAME.batch);
+        sprite2.draw(GAME.batch);
+        sprite3.draw(GAME.batch);
+        sprite4.draw(GAME.batch);
+        sprite5.draw(GAME.batch);
+        GAME.batch.end();
         if(Gdx.input.isTouched()) {
             Vector2 tmp = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Rectangle set = new Rectangle(20, 20, 60, 60);
@@ -71,16 +71,16 @@ public class players implements Screen {
             Rectangle p2 = new Rectangle(500,170,401,100);
             Rectangle play = new Rectangle(320,420,321,100);
             if (set.contains(tmp.x, tmp.y)) {
-                game.goToSettings(this);
+                GAME.goToSettings(this);
             }
             if(p1.contains(tmp.x, tmp.y)){
-                game.goToChangetanks1();
+                GAME.goToChangetanks1();
             }
             if(p2.contains(tmp.x, tmp.y)){
-                game.goToChangetanks1();
+                GAME.goToChangetanks1();
             }
             if(play.contains(tmp.x, tmp.y)){
-                game.goToGamePage();
+                GAME.goToGamePage();
             }
 
         }

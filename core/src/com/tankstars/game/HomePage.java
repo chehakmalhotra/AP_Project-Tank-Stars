@@ -9,12 +9,12 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class HomePage implements Screen {
-    final TankStars game;
+    final TankStars GAME;
     OrthographicCamera cam;
     Texture hp;
     Sprite sprite;
     public HomePage(TankStars a) {
-        this.game = a;
+        this.GAME = a;
         hp = new Texture(Gdx.files.internal("HomePage (2).png"));
         sprite = new Sprite(hp);
         sprite.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
@@ -32,13 +32,13 @@ public class HomePage implements Screen {
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
         cam.update();
-        game.batch.setProjectionMatrix(cam.combined);
-        game.batch.begin();
-        //game.batch.draw(hp,0,0);
-        sprite.draw(game.batch);
-        game.batch.end();
+        GAME.batch.setProjectionMatrix(cam.combined);
+        GAME.batch.begin();
+        //GAME.batch.draw(hp,0,0);
+        sprite.draw(GAME.batch);
+        GAME.batch.end();
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-            game.goToMainPage();
+            GAME.goToMainPage();
         }
     }
 

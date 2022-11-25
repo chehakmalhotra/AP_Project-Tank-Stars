@@ -9,13 +9,13 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class InGameMenu implements Screen {
-    final TankStars game;
+    final TankStars GAME;
     Texture background;
     Texture menu;
     Texture ground;
     Texture mainmenu;
     Texture resume;
-    Texture savegame;
+    Texture saveGAME;
     Sprite sprite1;
     Sprite sprite2;
     Sprite sprite3;
@@ -24,18 +24,18 @@ public class InGameMenu implements Screen {
     Sprite sprite6;
     OrthographicCamera cam;
     public InGameMenu(TankStars a){
-        this.game = a;
+        this.GAME = a;
         ground = new Texture(Gdx.files.internal("Ground.png"));
-        background = new Texture(Gdx.files.internal("GameBackground.png"));
+        background = new Texture(Gdx.files.internal("GAMEBackground.png"));
         mainmenu = new Texture(Gdx.files.internal("buttons/MainMenu.png"));
-        savegame = new Texture(Gdx.files.internal("buttons/SaveGame.png"));
+        saveGAME = new Texture(Gdx.files.internal("buttons/SaveGAME.png"));
         resume = new Texture(Gdx.files.internal("buttons/Resume.png"));
         menu = new Texture(Gdx.files.internal("menus/Group 7.png"));
 
         sprite2 = new Sprite(background);
         sprite1 = new Sprite(ground);
         sprite3 = new Sprite(mainmenu);
-        sprite4 = new Sprite(savegame);
+        sprite4 = new Sprite(saveGAME);
         sprite5 = new Sprite(resume);
         sprite6 = new Sprite(menu);
         sprite2.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -63,28 +63,28 @@ public class InGameMenu implements Screen {
     @Override
     public void render(float delta) {
         cam.update();
-        game.batch.setProjectionMatrix(cam.combined);
-        game.batch.begin();
-        sprite2.draw(game.batch);
-        sprite1.draw(game.batch);
-        sprite6.draw(game.batch);
-        sprite5.draw(game.batch);
-        sprite3.draw(game.batch);
-        sprite4.draw(game.batch);
-        game.batch.end();
+        GAME.batch.setProjectionMatrix(cam.combined);
+        GAME.batch.begin();
+        sprite2.draw(GAME.batch);
+        sprite1.draw(GAME.batch);
+        sprite6.draw(GAME.batch);
+        sprite5.draw(GAME.batch);
+        sprite3.draw(GAME.batch);
+        sprite4.draw(GAME.batch);
+        GAME.batch.end();
         if(Gdx.input.isTouched()) {
             Vector2 tmp = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Rectangle resume = new Rectangle(380,135,228,60);
             Rectangle mainmenu = new Rectangle(380,335,228,60);
-            Rectangle saveGame = new Rectangle(380,235,228,60);
+            Rectangle saveGAME = new Rectangle(380,235,228,60);
             if(mainmenu.contains(tmp.x, tmp.y)){
-                game.goToMainPage();
+                GAME.goToMainPage();
             }
             if(resume.contains(tmp.x, tmp.y)){
-                game.goToGamePage();
+                GAME.goToGamePage();
             }
-            if(saveGame.contains(tmp.x,tmp.y)){
-                game.goToResumePage();
+            if(saveGAME.contains(tmp.x,tmp.y)){
+                GAME.goToResumePage();
             }
 
         }
