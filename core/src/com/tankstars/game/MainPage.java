@@ -62,16 +62,16 @@ public class MainPage implements Screen {
         sprite1.setPosition(20,470);
         //new game
         sprite2.setSize(266,70);
-        sprite2.setPosition(650,420);
+        sprite2.setPosition(650,380);
         //saved games
         sprite8.setSize(256,70);
-        sprite8.setPosition(650,300);
-        //tank options
-        sprite5.setSize(256,70);
-        sprite5.setPosition(650,180);
+        sprite8.setPosition(650,250);
+//        //tank options
+//        sprite5.setSize(256,70);
+//        sprite5.setPosition(650,180);
         //exit game
         sprite3.setSize(260,70);
-        sprite3.setPosition(650,60);
+        sprite3.setPosition(650,120);
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.setToOrtho(false);
     }
@@ -93,25 +93,25 @@ public class MainPage implements Screen {
         sprite1.draw(game.batch);
         sprite2.draw(game.batch);
         sprite8.draw(game.batch);
-        sprite5.draw(game.batch);
+        //sprite5.draw(game.batch);
         sprite3.draw(game.batch);
         game.batch.end();
         if(Gdx.input.isTouched()){
             Vector2 tmp =  new Vector2(Gdx.input.getX(), Gdx.input.getY());
-            Rectangle eg =new Rectangle(650,420,266,70);
+            Rectangle eg =new Rectangle(650,320,266,70);
             Rectangle ng =new Rectangle(650,60,260,70);
-            Rectangle to =new Rectangle(650,300,256,70);
+           // Rectangle to =new Rectangle(650,300,256,70);
             Rectangle sg =new Rectangle(650,180,256,70);
             Rectangle set =new Rectangle(20,20,60,60);
             if(eg.contains(tmp.x,tmp.y)){
                 game.goToHomePage();
             }
             if(ng.contains(tmp.x,tmp.y)){
-                game.goToHomePage();
+                game.goToPlayers();
             }
-            if(to.contains(tmp.x,tmp.y)){
-                game.goToChangetanks1();
-            }
+//            if(to.contains(tmp.x,tmp.y)){
+//                game.goToChangetanks1();
+//            }
             if(sg.contains(tmp.x,tmp.y)){
                 game.goToResumePage();
             }

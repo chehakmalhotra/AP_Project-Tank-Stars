@@ -120,7 +120,7 @@ public class Settings implements Screen {
             Vector2 tmp =  new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Rectangle music = new Rectangle(370,180,266,70);
             Rectangle sound = new Rectangle(370,270,266,70);
-            Rectangle cross = new Rectangle(615,60,20,20);
+            Rectangle cross = new Rectangle(615,55,20,20);
             if(music.contains(tmp.x,tmp.y) && this.isFlag1()){
 //                sprite5.draw(GAME.batch);
                 extra = sprite6;

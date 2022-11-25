@@ -57,8 +57,8 @@ public class Changetanks1 implements Screen {
         sprite6 = new Sprite(menu);
         sprite7 = new Sprite(tinytank);
         sprite8 = new Sprite(choosetank);
-        sprite9 = new Sprite(choose);
-        sprite10 = new Sprite(play);
+        //sprite9 = new Sprite(choose);
+        sprite10 = new Sprite(choose);
         sprite11 = new Sprite(banner);
         sprite4.setSize(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         //tinytank
@@ -67,12 +67,12 @@ public class Changetanks1 implements Screen {
         //choose tank
         sprite8.setSize(300,47);
         sprite8.setPosition(615,430);
-        //play
-        sprite9.setSize(256,70);
-        sprite9.setPosition(625,130);
+//        //play
+//        sprite9.setSize(256,70);
+//        sprite9.setPosition(625,130);
         //choose
         sprite10.setSize(256,70);
-        sprite10.setPosition(625,50);
+        sprite10.setPosition(625,30);
         //menu
         sprite6.setSize(500,540);
         sprite6.setPosition(550,0);
@@ -118,7 +118,7 @@ public class Changetanks1 implements Screen {
         sprite11.draw(game.batch);
         sprite7.draw(game.batch);
         sprite8.draw(game.batch);
-        sprite9.draw(game.batch);
+        //sprite9.draw(game.batch);
         sprite10.draw(game.batch);
         game.batch.end();
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)){
@@ -126,15 +126,15 @@ public class Changetanks1 implements Screen {
         }
         if(Gdx.input.isTouched()){
             Vector2 tmp =  new Vector2(Gdx.input.getX(), Gdx.input.getY());
-            Rectangle play = new Rectangle(590,450,256,70);
-            Rectangle choose = new Rectangle(590,370,256,70);
+            //Rectangle play = new Rectangle(590,430,256,70);
+            Rectangle choose = new Rectangle(570,410,256,70);
             Rectangle arrow = new Rectangle(925,200,30,30);
             Rectangle set =new Rectangle(20,20,60,60);
-            if(play.contains(tmp.x,tmp.y)){
-                game.goToHomePage();
-            }
+//            if(play.contains(tmp.x,tmp.y)){
+//                game.goToGamePage();
+//            }
             if(choose.contains(tmp.x,tmp.y)){
-                game.goToHomePage();
+                game.goToPlayers();
             }
             if(arrow.contains(tmp.x,tmp.y)){
                 game.goToChangetanks2();

@@ -45,7 +45,19 @@ public class TankStars extends Game {
 		ResumePage rp= new ResumePage(this);
 		setScreen(rp);
 	}
+	public void goToGamePage(){
+		GamePage gp = new GamePage(this);
+		setScreen(gp);
+	}
+	public void goToPlayers(){
+		players pl = new players(this);
+		setScreen(pl);
+	}
 
+	public void goToInGameMenu(){
+		InGameMenu igm = new InGameMenu(this);
+		setScreen(igm);
+	}
 
 
 	@Override

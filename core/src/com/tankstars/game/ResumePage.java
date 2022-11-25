@@ -110,7 +110,7 @@ public class ResumePage implements Screen {
         if(Gdx.input.isTouched()) {
             Vector2 tmp = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Rectangle set = new Rectangle(20, 20, 60, 60);
-            Rectangle cross = new Rectangle(615,40,20,20);
+            Rectangle cross = new Rectangle(615,35,20,20);
             if (set.contains(tmp.x, tmp.y)) {
                 game.goToSettings(this);
             }
