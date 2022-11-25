@@ -38,7 +38,7 @@ public class GamePage implements Screen {
     public GamePage(TankStars a){
         this.GAME = a;
         ground = new Texture(Gdx.files.internal("Ground.png"));
-        background = new Texture(Gdx.files.internal("GAMEBackground.png"));
+        background = new Texture(Gdx.files.internal("GameBackground.png"));
         tank1 = new Texture(Gdx.files.internal("Abrams.png"));
         tank2 = new Texture(Gdx.files.internal("Frost.png"));
         settings = new Texture(Gdx.files.internal("Icons/settings.png"));

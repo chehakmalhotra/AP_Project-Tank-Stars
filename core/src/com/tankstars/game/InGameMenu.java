@@ -15,7 +15,7 @@ public class InGameMenu implements Screen {
     Texture ground;
     Texture mainmenu;
     Texture resume;
-    Texture saveGAME;
+    Texture savegame;
     Sprite sprite1;
     Sprite sprite2;
     Sprite sprite3;
@@ -28,14 +28,14 @@ public class InGameMenu implements Screen {
         ground = new Texture(Gdx.files.internal("Ground.png"));
         background = new Texture(Gdx.files.internal("GAMEBackground.png"));
         mainmenu = new Texture(Gdx.files.internal("buttons/MainMenu.png"));
-        saveGAME = new Texture(Gdx.files.internal("buttons/SaveGAME.png"));
+        savegame = new Texture(Gdx.files.internal("buttons/SaveGame.png"));
         resume = new Texture(Gdx.files.internal("buttons/Resume.png"));
         menu = new Texture(Gdx.files.internal("menus/Group 7.png"));
 
         sprite2 = new Sprite(background);
         sprite1 = new Sprite(ground);
         sprite3 = new Sprite(mainmenu);
-        sprite4 = new Sprite(saveGAME);
+        sprite4 = new Sprite(savegame);
         sprite5 = new Sprite(resume);
         sprite6 = new Sprite(menu);
         sprite2.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

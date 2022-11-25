@@ -1,11 +1,9 @@
 package com.tankstars.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
 
 public class TankStars extends Game {
 	SpriteBatch batch;
@@ -42,7 +40,7 @@ public class TankStars extends Game {
 	}
 
 	public void goToResumePage(){
-		ResumePage rp= new ResumePage(this);
+		SavedGames rp= new SavedGames(this);
 		setScreen(rp);
 	}
 	public void goToGamePage(){

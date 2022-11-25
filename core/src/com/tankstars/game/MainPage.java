@@ -33,12 +33,12 @@ public class MainPage implements Screen {
     public MainPage(TankStars a){
         this.GAME = a;
         settings = new Texture(Gdx.files.internal("icons/settings.png"));
-        NewGAME = new Texture(Gdx.files.internal("buttons/NewGAME.png"));
-        exitGAME = new Texture(Gdx.files.internal("buttons/ExitGAME.png"));
+        NewGAME = new Texture(Gdx.files.internal("buttons/NewGame.png"));
+        exitGAME = new Texture(Gdx.files.internal("buttons/ExitGame.png"));
         background = new Texture(Gdx.files.internal("background.png"));
         menu = new Texture(Gdx.files.internal("menus/main.png"));
         tank = new Texture(Gdx.files.internal("abrams.png"));
-        savedGAMEs = new Texture(Gdx.files.internal("buttons/SavedGAMEs.png"));
+        savedGAMEs = new Texture(Gdx.files.internal("buttons/SavedGames.png"));
         sprite1 = new Sprite(settings);
         sprite2 = new Sprite(NewGAME);
         sprite3 = new Sprite(exitGAME);

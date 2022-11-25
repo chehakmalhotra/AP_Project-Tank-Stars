@@ -1,7 +1,6 @@
 package com.tankstars.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -10,7 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-public class ResumePage implements Screen {
+public class SavedGames implements Screen {
     final TankStars GAME;
     Texture settings;
 
@@ -34,17 +33,17 @@ public class ResumePage implements Screen {
     Sprite sprite7;
     Sprite sprite8;
 
-    public ResumePage(TankStars a){
+    public SavedGames(TankStars a){
         this.GAME = a;
         settings = new Texture(Gdx.files.internal("icons/settings.png"));
 
         background1 = new Texture(Gdx.files.internal("background.png"));
         background2 = new Texture(Gdx.files.internal("menus/Group 20.png"));
 
-        button1 = new Texture(Gdx.files.internal("buttons/SavedGAME1.png"));
-        button2 = new Texture(Gdx.files.internal("buttons/SavedGAME2.png"));
-        button3 = new Texture(Gdx.files.internal("buttons/SavedGAME3.png"));
-        button4 = new Texture(Gdx.files.internal("buttons/SavedGAME4.png"));
+        button1 = new Texture(Gdx.files.internal("buttons/SavedGame1.png"));
+        button2 = new Texture(Gdx.files.internal("buttons/SavedGame2.png"));
+        button3 = new Texture(Gdx.files.internal("buttons/SavedGame3.png"));
+        button4 = new Texture(Gdx.files.internal("buttons/SavedGame4.png"));
         cross = new Texture(Gdx.files.internal("Icons/close.png"));
         sprite1 = new Sprite(settings);
         sprite2 = new Sprite(background1);
