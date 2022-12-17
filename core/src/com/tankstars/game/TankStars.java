@@ -11,7 +11,7 @@ public class TankStars extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		this.setScreen(new HomePage(this));
+		this.setScreen(new Ground(this));
 	}
 	public void goToMainPage(){
 		MainPage mp = new MainPage(this);

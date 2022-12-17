@@ -3,9 +3,11 @@ package com.tankstars.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class HomePage implements Screen {
@@ -13,6 +15,7 @@ public class HomePage implements Screen {
     private OrthographicCamera cam;
     private Texture hp;
     private Sprite sprite;
+    ShapeRenderer shape;
     public HomePage(TankStars a) {
         this.GAME = a;
         hp = new Texture(Gdx.files.internal("HomePage (2).png"));
@@ -34,6 +37,11 @@ public class HomePage implements Screen {
         cam.update();
         GAME.batch.setProjectionMatrix(cam.combined);
         GAME.batch.begin();
+//        shape.begin(ShapeRenderer.ShapeType.Line);
+//        shape.setColor(Color.RED);
+//        shape.rect(0,0,10,10);
+//        shape.end();
+
         //GAME.batch.draw(hp,0,0);
         sprite.draw(GAME.batch);
         GAME.batch.end();
