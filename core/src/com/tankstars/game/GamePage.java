@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class GamePage implements Screen {
     private final TankStars GAME;
+    private Ground grd;
     private Texture ground;
     private Texture background;
     private Texture tank1;
@@ -38,6 +39,7 @@ public class GamePage implements Screen {
     private Sprite sprite13;
     private OrthographicCamera cam;
     public GamePage(TankStars a){
+        grd = new Ground();
         this.GAME = a;
         ground = new Texture(Gdx.files.internal("Ground.png"));
         background = new Texture(Gdx.files.internal("GameBackground.png"));
@@ -119,8 +121,11 @@ public class GamePage implements Screen {
         GAME.batch.setProjectionMatrix(cam.combined);
         GAME.batch.begin();
         sprite2.draw(GAME.batch);
-        sprite1.draw(GAME.batch);
+
+        //sprite1.draw(GAME.batch);
+
         sprite5.draw(GAME.batch);
+
         sprite6.draw(GAME.batch);
         sprite7.draw(GAME.batch);
         sprite9.draw(GAME.batch);
@@ -132,6 +137,7 @@ public class GamePage implements Screen {
         sprite12.draw(GAME.batch);
         sprite13.draw(GAME.batch);
         GAME.batch.end();
+        grd.render(delta);
         if(Gdx.input.isTouched()) {
             Vector2 tmp = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Rectangle set = new Rectangle(20, 20, 60, 60);

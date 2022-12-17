@@ -10,40 +10,20 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import java.util.ArrayList;
 
 public class Ground implements Screen {
-    final TankStars game;
-    Ground(TankStars ts){
-        this.game = ts;
+    //final TankStars game;
+    Ground(){
         shape = new ShapeRenderer();
     }
     ShapeRenderer shape;
-    ArrayList<Float> coordinates = new ArrayList<>();
+    public ArrayList<Float> coordinates = new ArrayList<>();
 
-    public void create() {
-
-    }
-    public void points(){
+     public void points(){
         double a = 0.5* Gdx.graphics.getHeight();
-        //randome integer*height
-        double h = 0.16*Gdx.graphics.getHeight();//randome int*height
+        double h = 0.16*Gdx.graphics.getHeight();
         for(int i=1;i<=Gdx.graphics.getWidth();i++){
-            coordinates.add((float) (h+a*(Math.sin(0.01*i))));
+            coordinates.add((float) (200+90*((Math.sin(0.003*i+11))+(Math.cos(0.0099*i+5)))));
         }
-        //System.out.println(coordinates.size());
     }
-
-
-
-//    public void render(){
-//        Gdx.gl.glClearColor(.25f, .25f, .25f, 1);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//        this.points();
-//        shape.begin(ShapeRenderer.ShapeType.Filled);
-//        shape.setColor(Color.RED);
-//        for(int i =0;i<Gdx.graphics.getWidth();i++){
-//            shape.rect(i,0,1,coordinates.get(i));
-//        }
-//        shape.end();
-//    }
 
     @Override
     public void show() {
@@ -52,11 +32,11 @@ public class Ground implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(.25f, .25f, .25f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+//        Gdx.gl.glClearColor(.25f, .25f, .25f, 1);
+//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.points();
         shape.begin(ShapeRenderer.ShapeType.Filled);
-        shape.setColor(Color.RED);
+        shape.setColor(Color.BROWN);
         for(int i =0;i<Gdx.graphics.getWidth();i++){
             shape.rect(i,0,1,coordinates.get(i));
         }
