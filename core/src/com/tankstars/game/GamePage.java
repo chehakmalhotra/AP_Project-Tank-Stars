@@ -1,14 +1,20 @@
 package com.tankstars.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+import static java.lang.System.exit;
+
 public class GamePage implements Screen {
+    //private SpriteBatch batch = new SpriteBatch();
     private final TankStars GAME;
     private Ground grd;
     private Texture ground;
@@ -37,7 +43,10 @@ public class GamePage implements Screen {
     private Sprite sprite11;
     private Sprite sprite12;
     private Sprite sprite13;
+    private float y;
     private OrthographicCamera cam;
+    private float tank1x;
+    private float tank1y;
     public GamePage(TankStars a){
         grd = new Ground();
         this.GAME = a;
@@ -68,6 +77,7 @@ public class GamePage implements Screen {
         sprite12 = new Sprite(angle);
         sprite13 = new Sprite(fuel);
         sprite2.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+       // tank1.
         //ground
         sprite1.setSize(1000,300);
         sprite1.setPosition(0,-10);
@@ -87,8 +97,10 @@ public class GamePage implements Screen {
         sprite8.setSize(256,52);
         sprite8.setPosition(523,485);
         //tank1
+        tank1x = 100F;
+        tank1y = grd.get_y(tank1x);
         sprite3.setSize(120,115);
-        sprite3.setPosition(150,220);
+        sprite3.setPosition(tank1x,tank1y);
         sprite3.rotate(6);
         //tank2
         sprite4.setSize(213,115);
@@ -114,12 +126,35 @@ public class GamePage implements Screen {
     public void show() {
 
     }
-
     @Override
     public void render(float delta) {
+
         cam.update();
         GAME.batch.setProjectionMatrix(cam.combined);
         GAME.batch.begin();
+        sprite3.setOrigin(sprite3.getWidth()/2,sprite3.getHeight()/2);
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && tank1x<=Gdx.graphics.getWidth()){
+            float beforex = tank1x;
+            float beforey = tank1y;
+            tank1x+= 1f;
+            if(beforey<tank1y){
+                tank1y = grd.get_y(tank1x)+30;
+            }
+            else{
+                tank1y = grd.get_y(tank1x)-30;
+            }
+            sprite3.setPosition(tank1x,tank1y);
+            double angle = beforey-tank1y/beforex-tank1x;
+
+
+        }if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && tank1x>=0){
+            float beforex = tank1x;
+            float beforey = tank1y;
+            tank1x-= 1f;
+            tank1y = grd.get_y(tank1x);
+            sprite3.setPosition(tank1x,tank1y);
+            // sprite3.draw(GAME.batch);
+        }
         sprite2.draw(GAME.batch);
 
         //sprite1.draw(GAME.batch);
@@ -136,8 +171,12 @@ public class GamePage implements Screen {
         sprite11.draw(GAME.batch);
         sprite12.draw(GAME.batch);
         sprite13.draw(GAME.batch);
+        //GAME.batch.draw(tank1, 100F, grd.coordinates.get(100), 50, 50, 0, 1, 1, 0);
+       // System.out.println(y);
+
         GAME.batch.end();
         grd.render(delta);
+
         if(Gdx.input.isTouched()) {
             Vector2 tmp = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Rectangle set = new Rectangle(20, 20, 60, 60);

@@ -11,11 +11,12 @@ import java.util.ArrayList;
 
 public class Ground implements Screen {
     //final TankStars game;
+
+    ShapeRenderer shape;
     Ground(){
         shape = new ShapeRenderer();
     }
-    ShapeRenderer shape;
-    public ArrayList<Float> coordinates = new ArrayList<>();
+    private ArrayList<Float> coordinates = new ArrayList<>();
 
      public void points(){
         double a = 0.5* Gdx.graphics.getHeight();
@@ -23,6 +24,10 @@ public class Ground implements Screen {
         for(int i=1;i<=Gdx.graphics.getWidth();i++){
             coordinates.add((float) (200+90*((Math.sin(0.003*i+11))+(Math.cos(0.0099*i+5)))));
         }
+    }
+    public float get_y(float a){
+         return (float) (200+90*((Math.sin(0.003*a+11))+(Math.cos(0.0099*a+5))));
+        // return coordinates.get((int) (a - 1))*100;
     }
 
     @Override
@@ -41,7 +46,7 @@ public class Ground implements Screen {
             shape.rect(i,0,1,coordinates.get(i));
         }
         shape.end();
-
+        //System.out.println(coordinates.get(100));
     }
 
     @Override
