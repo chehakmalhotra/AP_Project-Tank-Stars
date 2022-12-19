@@ -8,26 +8,56 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Ground implements Screen {
     //final TankStars game;
 
     ShapeRenderer shape;
+    private static int chosen;
+
     Ground(){
         shape = new ShapeRenderer();
+        int a = (int) (Math.random()*3);
+        setChosen(a);
     }
     private ArrayList<Float> coordinates = new ArrayList<>();
 
-     public void points(){
-        double a = 0.5* Gdx.graphics.getHeight();
-        double h = 0.16*Gdx.graphics.getHeight();
+    public static void setChosen(int c) {
+        chosen = c;
+    }
+
+    public void points(int a){
+        setChosen(a);
         for(int i=1;i<=Gdx.graphics.getWidth();i++){
-            coordinates.add((float) (200+90*((Math.sin(0.003*i+11))+(Math.cos(0.0099*i+5)))));
+            if(chosen==0) {
+                coordinates.add((float) (200 + 90 * ((Math.sin(0.003 * i + 11)) + (Math.cos(0.0099 * i + 5)))));
+            }
+            if(chosen==1){
+                coordinates.add((float) (200+90*(Math.sin(0.0084*i)+Math.sin(-0.007*i))));
+            }
+            if(chosen==2){
+                coordinates.add((float)(200+50*(Math.sin(0.005*i)+Math.sin(-0.008*i))));
+            }
         }
     }
     public float get_y(float a){
-         return (float) (200+90*((Math.sin(0.003*a+11))+(Math.cos(0.0099*a+5))));
-        // return coordinates.get((int) (a - 1))*100;
+//        int m = chosen;
+//        return m;
+        if(chosen==0){
+         return (float) (200+90*((Math.sin(0.003*a+11))+(Math.cos(0.0099*a+5))));}
+        else if(chosen==1){
+            return (float) (200+90*(Math.sin(0.0084*a)+Math.sin(-0.007*a)));
+        }
+        else if(chosen==2){
+            return (float)(200+50*(Math.sin(0.005*a)+Math.sin(-0.008*a)));
+        }
+        return 0;
+
+    }
+    public void explosion(float a){
+         //a is x coordinate where contact happens
+
     }
 
     @Override
@@ -39,7 +69,7 @@ public class Ground implements Screen {
     public void render(float delta) {
 //        Gdx.gl.glClearColor(.25f, .25f, .25f, 1);
 //        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        this.points();
+        this.points(chosen);
         shape.begin(ShapeRenderer.ShapeType.Filled);
         shape.setColor(Color.BROWN);
         for(int i =0;i<Gdx.graphics.getWidth();i++){

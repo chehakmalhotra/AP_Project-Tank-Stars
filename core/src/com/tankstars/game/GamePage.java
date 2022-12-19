@@ -132,40 +132,13 @@ public class GamePage implements Screen {
         cam.update();
         GAME.batch.setProjectionMatrix(cam.combined);
         GAME.batch.begin();
-        sprite3.setOrigin(sprite3.getWidth()/2,sprite3.getHeight()/2);
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && tank1x<=Gdx.graphics.getWidth()){
-            float beforex = tank1x;
-            float beforey = tank1y;
-            tank1x+= 1f;
-            if(beforey<tank1y){
-                tank1y = grd.get_y(tank1x)+30;
-            }
-            else{
-                tank1y = grd.get_y(tank1x)-30;
-            }
-            sprite3.setPosition(tank1x,tank1y);
-            double angle = beforey-tank1y/beforex-tank1x;
-
-
-        }if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && tank1x>=0){
-            float beforex = tank1x;
-            float beforey = tank1y;
-            tank1x-= 1f;
-            tank1y = grd.get_y(tank1x);
-            sprite3.setPosition(tank1x,tank1y);
-            // sprite3.draw(GAME.batch);
-        }
         sprite2.draw(GAME.batch);
-
-        //sprite1.draw(GAME.batch);
-
         sprite5.draw(GAME.batch);
-
         sprite6.draw(GAME.batch);
         sprite7.draw(GAME.batch);
         sprite9.draw(GAME.batch);
         sprite8.draw(GAME.batch);
-        sprite3.draw(GAME.batch);
+//        sprite3.draw(GAME.batch);
         sprite4.draw(GAME.batch);
         sprite10.draw(GAME.batch);
         sprite11.draw(GAME.batch);
@@ -173,9 +146,21 @@ public class GamePage implements Screen {
         sprite13.draw(GAME.batch);
         //GAME.batch.draw(tank1, 100F, grd.coordinates.get(100), 50, 50, 0, 1, 1, 0);
        // System.out.println(y);
-
         GAME.batch.end();
         grd.render(delta);
+        GAME.batch.begin();
+        sprite3.draw(GAME.batch);
+        sprite3.setOrigin(sprite3.getWidth(), (float) (sprite3.getHeight()*0.75));
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && tank1x<=Gdx.graphics.getWidth()){
+            tank1x+= 1f;
+            tank1y = grd.get_y(tank1x);
+            sprite3.setPosition(tank1x,tank1y);
+        }if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && tank1x>=0){
+            tank1x-= 1f;
+            tank1y = grd.get_y(tank1x);
+            sprite3.setPosition(tank1x,tank1y);
+        }
+        GAME.batch.end();
 
         if(Gdx.input.isTouched()) {
             Vector2 tmp = new Vector2(Gdx.input.getX(), Gdx.input.getY());
