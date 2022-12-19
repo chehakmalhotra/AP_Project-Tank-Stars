@@ -138,19 +138,17 @@ public class GamePage implements Screen {
         sprite7.draw(GAME.batch);
         sprite9.draw(GAME.batch);
         sprite8.draw(GAME.batch);
-//        sprite3.draw(GAME.batch);
         sprite4.draw(GAME.batch);
         sprite10.draw(GAME.batch);
         sprite11.draw(GAME.batch);
         sprite12.draw(GAME.batch);
         sprite13.draw(GAME.batch);
-        //GAME.batch.draw(tank1, 100F, grd.coordinates.get(100), 50, 50, 0, 1, 1, 0);
-       // System.out.println(y);
         GAME.batch.end();
         grd.render(delta);
+
         GAME.batch.begin();
         sprite3.draw(GAME.batch);
-        sprite3.setOrigin(sprite3.getWidth(), (float) (sprite3.getHeight()*0.75));
+        sprite3.setOrigin((float) (sprite3.getWidth()), (float) (sprite3.getHeight()*0.75));
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && tank1x<=Gdx.graphics.getWidth()){
             tank1x+= 1f;
             tank1y = grd.get_y(tank1x);

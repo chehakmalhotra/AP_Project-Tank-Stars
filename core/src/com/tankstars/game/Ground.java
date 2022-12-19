@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Ground implements Screen {
+public class Ground{
     //final TankStars game;
 
     ShapeRenderer shape;
@@ -45,12 +45,12 @@ public class Ground implements Screen {
 //        int m = chosen;
 //        return m;
         if(chosen==0){
-         return (float) (200+90*((Math.sin(0.003*a+11))+(Math.cos(0.0099*a+5))));}
+         return (float) (190+90*((Math.sin(0.003*a+11))+(Math.cos(0.0099*a+5))));}
         else if(chosen==1){
-            return (float) (200+90*(Math.sin(0.0084*a)+Math.sin(-0.007*a)));
+            return (float) (190+90*(Math.sin(0.0084*a)+Math.sin(-0.007*a)));
         }
         else if(chosen==2){
-            return (float)(200+50*(Math.sin(0.005*a)+Math.sin(-0.008*a)));
+            return (float)(190+50*(Math.sin(0.005*a)+Math.sin(-0.008*a)));
         }
         return 0;
 
@@ -60,12 +60,6 @@ public class Ground implements Screen {
 
     }
 
-    @Override
-    public void show() {
-
-    }
-
-    @Override
     public void render(float delta) {
 //        Gdx.gl.glClearColor(.25f, .25f, .25f, 1);
 //        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -79,27 +73,6 @@ public class Ground implements Screen {
         //System.out.println(coordinates.get(100));
     }
 
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
     public void dispose () {
         shape.dispose();
     }
