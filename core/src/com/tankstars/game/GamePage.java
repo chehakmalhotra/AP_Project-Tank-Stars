@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import static java.lang.System.exit;
 
-public class GamePage implements Screen {
+public class GamePage implements Screen  {
     //private SpriteBatch batch = new SpriteBatch();
     private final TankStars GAME;
     private Ground grd;
@@ -43,10 +43,16 @@ public class GamePage implements Screen {
     private Sprite sprite11;
     private Sprite sprite12;
     private Sprite sprite13;
-    private float y;
+    //private float y;
     private OrthographicCamera cam;
+
     private float tank1x;
     private float tank1y;
+    private Texture targetTexture;
+    Texture img;
+
+    public Sprite trajectorySprite;
+    public ProjectileEquation projectileEquation;
     public GamePage(TankStars a){
         grd = new Ground();
         this.GAME = a;
@@ -121,11 +127,84 @@ public class GamePage implements Screen {
         sprite13.setPosition(150,160);
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.setToOrtho(false);
+        //img = new Texture("abrams.png");
+        targetTexture = new Texture("ellipse.png");
+
+        trajectorySprite = new Sprite(targetTexture);
+        //trajectorySprite.setSize(1, 1);
+        //trajectorySprite.setPosition(5, 5);
+        //sprite1= new Sprite(img);
+        //sprite1.setSize(100,100);
+        //sprite1.setPosition(80,150);
+        projectileEquation=new ProjectileEquation();
+
+
+        //guicam.position.set(480/2F, 320/2F, 0);
+
     }
+
+
+
     @Override
     public void show() {
 
     }
+
+
+   /* public void create () {
+
+        //img = new Texture("abrams.png");
+        targetTexture = new Texture("ellipse.png");
+
+        trajectorySprite = new Sprite(targetTexture);
+        //trajectorySprite.setSize(1, 1);
+        //trajectorySprite.setPosition(5, 5);
+        //sprite1= new Sprite(img);
+        //sprite1.setSize(100,100);
+        //sprite1.setPosition(80,150);
+        projectileEquation=new ProjectileEquation();
+
+
+        //guicam.position.set(480/2F, 320/2F, 0);
+
+    }*/
+
+    public void trajectorystuff(ProjectileEquation projectileEquation,int ye){
+
+        if(projectileEquation!=null) {
+            projectileEquation.gravity = -9.8f;
+            projectileEquation.startVelocity.set(200, ye);
+            projectileEquation.startPoint = new Vector2(80, 250);
+        }
+    }
+
+    public void draw(){
+        float t = 0f;
+        float x=0f;
+        float y=0f;
+
+        for (int i = 0; i<7; i++) {
+            if(projectileEquation!=null){
+            x =  projectileEquation.getX(t);
+            y =  projectileEquation.getY(t);
+            }
+            //System.out.println("x: " + x + " y: " + y);
+            GAME.batch.begin();
+            GAME.batch.setColor(1, 0, 0, 1);
+
+            GAME.batch.draw(trajectorySprite, x, y, 10, 10);
+            GAME.batch.end();
+
+
+            t += 0.25f;
+        }
+
+
+
+
+    }
+
+    int ye=5;
     @Override
     public void render(float delta) {
 
@@ -171,6 +250,18 @@ public class GamePage implements Screen {
                 GAME.goToInGameMenu();
             }
         }
+        if(Gdx.input.isKeyPressed(Input.Keys.W)){
+            ye=ye+10;
+            System.out.println(ye);
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.S)){
+            ye=ye-10;
+        }
+        trajectorystuff(projectileEquation, ye);
+
+        draw();
+
     }
 
     @Override
@@ -195,6 +286,8 @@ public class GamePage implements Screen {
 
     @Override
     public void dispose() {
+        img.dispose();
+        targetTexture.dispose();
 
     }
 }

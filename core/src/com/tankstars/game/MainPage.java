@@ -20,6 +20,7 @@ public class MainPage implements Screen {
     private Texture background;
     private Texture tank;
     private Texture menu;
+
     private OrthographicCamera cam;
     private Sprite sprite1;
     private Sprite sprite2;
@@ -29,6 +30,11 @@ public class MainPage implements Screen {
     private Sprite sprite6;
     private Sprite sprite7;
     private Sprite sprite8;
+
+
+
+
+
     public MainPage(TankStars a){
         this.GAME = a;
         settings = new Texture(Gdx.files.internal("icons/settings.png"));
