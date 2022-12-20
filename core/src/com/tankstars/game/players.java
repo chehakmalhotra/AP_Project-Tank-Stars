@@ -79,15 +79,15 @@ public class players implements Screen {
             }
             if(p1.contains(tmp.x, tmp.y)){
                 GAME.goToChangetanks1();
-                changetanks1.setTank1flag(true);
-                changetanks2.setTank1flag(true);
-                changetanks3.setTank1flag(true);
+                if(changetanks1!=null)changetanks1.setTank1flag(true);
+                if(changetanks2!=null)changetanks2.setTank1flag(true);
+                if(changetanks3!=null)changetanks3.setTank1flag(true);
             }
             if(p2.contains(tmp.x, tmp.y)){
                 GAME.goToChangetanks1();
-                changetanks1.setTank2flag(true);
-                changetanks2.setTank2flag(true);
-                changetanks3.setTank2flag(true);
+                if(changetanks1!=null)changetanks1.setTank2flag(true);
+                if(changetanks2!=null)changetanks2.setTank2flag(true);
+                if(changetanks3!=null)changetanks3.setTank2flag(true);
             }
             if(play.contains(tmp.x, tmp.y)){
                 GAME.goToGamePage();
