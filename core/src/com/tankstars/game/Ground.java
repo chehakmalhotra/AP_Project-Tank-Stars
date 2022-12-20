@@ -45,12 +45,12 @@ public class Ground{
 //        int m = chosen;
 //        return m;
         if(chosen==0){
-         return (float) (190+90*((Math.sin(0.003*a+11))+(Math.cos(0.0099*a+5))));}
+         return (float) (200+90*((Math.sin(0.003*a+11))+(Math.cos(0.0099*a+5))));}
         else if(chosen==1){
-            return (float) (190+90*(Math.sin(0.0084*a)+Math.sin(-0.007*a)));
+            return (float) (200+90*(Math.sin(0.0084*a)+Math.sin(-0.007*a)));
         }
         else if(chosen==2){
-            return (float)(190+50*(Math.sin(0.005*a)+Math.sin(-0.008*a)));
+            return (float)(200+50*(Math.sin(0.005*a)+Math.sin(-0.008*a)));
         }
         return 0;
 

@@ -50,6 +50,8 @@ public class GamePage implements Screen  {
 
     private float tank1x;
     private float tank1y;
+    private float tank2x;
+    private float tank2y;
     private Texture targetTexture;
     Texture img;
 
@@ -60,8 +62,8 @@ public class GamePage implements Screen  {
         this.GAME = a;
         ground = new Texture(Gdx.files.internal("Ground.png"));
         background = new Texture(Gdx.files.internal("GameBackground.png"));
-        tankk1 = new Texture(Gdx.files.internal("Abrams.png"));
-        tankk2 = new Texture(Gdx.files.internal("Frost.png"));
+        tankk1 = new Texture(Gdx.files.internal("abrams(1).png"));
+        tankk2 = new Texture(Gdx.files.internal("frost(1).png"));
         settings = new Texture(Gdx.files.internal("Icons/settings.png"));
         GAMEmenu = new Texture(Gdx.files.internal("Icons/menu.png"));
         healthbar1 = new Texture(Gdx.files.internal("Icons/health1.png"));
@@ -107,13 +109,15 @@ public class GamePage implements Screen  {
         //tank1
         tank1x = 100F;
         tank1y = grd.get_y(tank1x);
-        sprite3.setSize(120,115);
+        //sprite3.setSize(120,115);
         sprite3.setPosition(tank1x,tank1y);
-        sprite3.rotate(6);
+        //sprite3.rotate(6);
         //tank2
-        sprite4.setSize(213,115);
-        sprite4.setPosition(570,250);
-        sprite4.rotate(7);
+        tank2x = 570F;
+        tank2y = grd.get_y(tank2x);
+        //sprite4.setSize(213,115);
+        sprite4.setPosition(tank2x,tank2y);
+
         sprite4.flip(true,false);
         //fire
         sprite10.setSize(104,50);
@@ -220,17 +224,17 @@ public class GamePage implements Screen  {
         sprite7.draw(GAME.batch);
         sprite9.draw(GAME.batch);
         sprite8.draw(GAME.batch);
-        sprite4.draw(GAME.batch);
-        sprite10.draw(GAME.batch);
         sprite11.draw(GAME.batch);
         sprite12.draw(GAME.batch);
-        sprite13.draw(GAME.batch);
         GAME.batch.end();
         grd.render(delta);
 
         GAME.batch.begin();
+        sprite10.draw(GAME.batch);
+        sprite13.draw(GAME.batch);
+        sprite4.draw(GAME.batch);
         sprite3.draw(GAME.batch);
-        sprite3.setOrigin((float) (sprite3.getWidth()), (float) (sprite3.getHeight()*0.75));
+        //sprite3.setOrigin(25, 100);
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && tank1x<=Gdx.graphics.getWidth()){
             tank1x+= 1f;
             tank1y = grd.get_y(tank1x);
@@ -240,6 +244,26 @@ public class GamePage implements Screen  {
             tank1y = grd.get_y(tank1x);
             sprite3.setPosition(tank1x,tank1y);
         }
+        //sprite4.setOrigin(sprite4.getWidth(),sprite4.getHeight());
+        if(Gdx.input.isKeyPressed(Input.Keys.M) && tank2x<=Gdx.graphics.getWidth()){
+            float beforey = tank2y;
+            tank2x-= 1f;
+            tank2y = grd.get_y(tank2x);
+            double angle = -tank2y+beforey ;
+            sprite4.setPosition(tank2x,tank2y);
+//            sprite4.rotate((float) Math.atan(angle));
+//            sprite4.setOrigin(0,0);
+        }if(Gdx.input.isKeyPressed(Input.Keys.N)){
+            float beforey = tank2y;
+            tank2x+= 1f;
+            tank2y = grd.get_y(tank2x);
+            double angle = tank2y-beforey ;
+            sprite4.setPosition(tank2x,tank2y);
+//            sprite4.setRotation(20);
+//            sprite4.setRotation((float) Math.atan(angle));
+//            sprite4.setOrigin(0,0);
+        }
+//        sprite4.setRotation(0);
         GAME.batch.end();
 
         if(Gdx.input.isTouched()) {
