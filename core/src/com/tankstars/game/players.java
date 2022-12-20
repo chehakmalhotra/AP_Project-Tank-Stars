@@ -11,6 +11,10 @@ import com.badlogic.gdx.math.Vector2;
 public class players implements Screen {
     private Texture background;
     private Texture player1;
+
+    private Changetanks1 changetanks1;
+    private Changetanks2 changetanks2;
+    private Changetanks3 changetanks3;
     private Texture player2;
     private Texture settings;
     private Texture play;
@@ -75,9 +79,15 @@ public class players implements Screen {
             }
             if(p1.contains(tmp.x, tmp.y)){
                 GAME.goToChangetanks1();
+                changetanks1.setTank1flag(true);
+                changetanks2.setTank1flag(true);
+                changetanks3.setTank1flag(true);
             }
             if(p2.contains(tmp.x, tmp.y)){
                 GAME.goToChangetanks1();
+                changetanks1.setTank2flag(true);
+                changetanks2.setTank2flag(true);
+                changetanks3.setTank2flag(true);
             }
             if(play.contains(tmp.x, tmp.y)){
                 GAME.goToGamePage();

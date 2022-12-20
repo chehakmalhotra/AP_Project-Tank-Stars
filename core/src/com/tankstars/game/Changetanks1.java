@@ -11,6 +11,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class Changetanks1 implements Screen {
+
+    private GamePage gamepage;
+    private boolean tank1flag= false;
+    private boolean tank2flag= false;
     private final TankStars GAME;
     private Texture settings;
     private Texture background;
@@ -92,6 +96,7 @@ public class Changetanks1 implements Screen {
         sprite1.setPosition(20,470);
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.setToOrtho(false);
+
     }
 
     @Override
@@ -100,6 +105,10 @@ public class Changetanks1 implements Screen {
 
 
     }
+
+
+
+
 
     @Override
     public void render(float delta) {
@@ -134,6 +143,7 @@ public class Changetanks1 implements Screen {
 //            }
             if(choose.contains(tmp.x,tmp.y)){
                 GAME.goToPlayers();
+                createtank1(gamepage);
             }
             if(arrow.contains(tmp.x,tmp.y)){
                 GAME.goToChangetanks2();
@@ -144,6 +154,9 @@ public class Changetanks1 implements Screen {
 
         }
 
+    }
+    public void createtank1(GamePage gamepage){
+        gamepage.tank1= new Tank(100,100,"abrams");
     }
 
     @Override
@@ -169,6 +182,22 @@ public class Changetanks1 implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    public Boolean getTank1flag() {
+        return tank1flag;
+    }
+
+    public void setTank1flag(Boolean tank1flag) {
+        this.tank1flag = tank1flag;
+    }
+
+    public Boolean getTank2flag() {
+        return tank2flag;
+    }
+
+    public void setTank2flag(Boolean tank2flag) {
+        this.tank2flag = tank2flag;
     }
 }
 

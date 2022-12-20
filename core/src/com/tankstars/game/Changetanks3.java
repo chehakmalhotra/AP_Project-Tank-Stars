@@ -12,6 +12,11 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class Changetanks3 implements Screen {
     private final TankStars GAME;
+
+    private Boolean tank1flag= false;
+    private Boolean tank2flag= false;
+
+    private GamePage gamepage;
     private Texture settings;
     private Texture background;
     private Texture arrowL;
@@ -134,6 +139,7 @@ public class Changetanks3 implements Screen {
 //            }
             if (choose.contains(tmp.x, tmp.y)) {
                 GAME.goToPlayers();
+                createtank3(gamepage);
             }
 //            if(arrowR.contains(tmp.x,tmp.y)){
 //                GAME.goToChangetanks3();
@@ -147,7 +153,11 @@ public class Changetanks3 implements Screen {
 
         }
 
-        }
+    }
+    public void createtank3(GamePage gamepage){
+        gamepage.tank1= new Tank(100,100,"abrams");
+
+    }
 
     @Override
     public void resize(int width, int height) {
@@ -172,6 +182,22 @@ public class Changetanks3 implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    public Boolean getTank1flag() {
+        return tank1flag;
+    }
+
+    public void setTank1flag(Boolean tank1flag) {
+        this.tank1flag = tank1flag;
+    }
+
+    public Boolean getTank2flag() {
+        return tank2flag;
+    }
+
+    public void setTank2flag(Boolean tank2flag) {
+        this.tank2flag = tank2flag;
     }
 }
 
