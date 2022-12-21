@@ -430,7 +430,14 @@ public class GamePage implements Screen  {
             draw();}
         //trajectorystuff(projectileEquationright, yer, xer, 800, 400);draw();
 
-
+        if(width3==246){
+            //sprite player1 wins
+            GAME.goToMainPage();
+        }
+        if(width4==246){
+            //sprite player2 wins
+            GAME.goToMainPage();
+        }
        
 
     }
@@ -491,22 +498,6 @@ public class GamePage implements Screen  {
                 tank1x-=2;
             }
         }
-    }
-    public void healthbar1(int a){
-        shape5.begin(ShapeRenderer.ShapeType.Filled);
-        shape5.rect(200,500,246,30);
-        shape5.setColor(Color.RED);
-        shape5.end();
-        shape6.begin(ShapeRenderer.ShapeType.Filled);
-        shape6.setColor(Color.BLACK);
-        if(width3<=246){
-            if(a==0)width3+=0;
-            if(a==1)width3+=0.5;
-            if(a==2)width3+=1;
-            if(a==3)width3+=1.5;
-        }
-        shape6.rect(200,500,width3,30);
-        shape6.end();
     }
     @Override
     public void resize(int width, int height) {

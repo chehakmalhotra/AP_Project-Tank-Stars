@@ -107,11 +107,15 @@ public class SavedGames implements Screen {
             Vector2 tmp = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Rectangle set = new Rectangle(20, 20, 60, 60);
             Rectangle cross = new Rectangle(615,35,20,20);
+            Rectangle saved_game1 = new Rectangle(345,120,256,70);
             if (set.contains(tmp.x, tmp.y)) {
                 GAME.goToSettings(this);
             }
             if(cross.contains(tmp.x, tmp.y)){
                GAME.goToMainPage();
+            }
+            if(saved_game1.contains(tmp.x, tmp.y)){
+                GAME.goToMainPage();
             }
         }
     }
