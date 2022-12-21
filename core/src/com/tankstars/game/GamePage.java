@@ -3,10 +3,12 @@ package com.tankstars.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -14,10 +16,22 @@ import com.badlogic.gdx.math.Vector2;
 import static java.lang.System.exit;
 
 public class GamePage implements Screen  {
+    float width1 = 1;
+    float width2 = 1;
+    float width3 = 1;
+    float width4 = 1;
     PlayerInfo player1;
     PlayerInfo player2;
     Tank tank1;
     Tank tank2;
+    ShapeRenderer shape1;
+    ShapeRenderer shape2;
+    ShapeRenderer shape3;
+    ShapeRenderer shape4;
+    ShapeRenderer shape5;
+    ShapeRenderer shape6;
+    ShapeRenderer shape7;
+    ShapeRenderer shape8;
     //private SpriteBatch batch = new SpriteBatch();
     private final TankStars GAME;
     private Ground grd;
@@ -66,6 +80,14 @@ public class GamePage implements Screen  {
         a.setPlayer1(player1);
         player2 = new PlayerInfo(this,tank2,grd);
         a.setPlayer2(player2);
+        shape1 = new ShapeRenderer();
+        shape2 = new ShapeRenderer();
+        shape3 = new ShapeRenderer();
+        shape4 = new ShapeRenderer();
+        shape5 = new ShapeRenderer();
+        shape6 = new ShapeRenderer();
+        shape7 = new ShapeRenderer();
+        shape8 = new ShapeRenderer();
         ground = new Texture(Gdx.files.internal("Ground.png"));
         background = new Texture(Gdx.files.internal("GameBackground.png"));
         //tankk1 = new Texture(Gdx.files.internal("abrams(1).png"));
@@ -104,14 +126,14 @@ public class GamePage implements Screen  {
         sprite6.setSize(50,50);
         sprite6.setPosition(900,480);
         //healthbar
-        sprite7.setSize(246,50);
-        sprite7.setPosition(200,480);
+//        sprite7.setSize(246,50);
+//        sprite7.setPosition(200,480);
         //vs
         sprite9.setSize(91,60);
         sprite9.setPosition(440,470);
         //healthbar
-        sprite8.setSize(256,52);
-        sprite8.setPosition(523,485);
+//        sprite8.setSize(256,52);
+//        sprite8.setPosition(523,485);
         //tank1
         tank1x = 100F;
         tank1y = grd.get_y(tank1x);
@@ -141,8 +163,8 @@ public class GamePage implements Screen  {
         sprite12.setSize(78,50);
         sprite12.setPosition(120,250);
         //fuel
-        sprite13.setSize(145,25);
-        sprite13.setPosition(150,160);
+//        sprite13.setSize(145,25);
+//        sprite13.setPosition(150,160);
         cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         cam.setToOrtho(false);
         //img = new Texture("abrams.png");
@@ -242,9 +264,9 @@ public class GamePage implements Screen  {
         sprite2.draw(GAME.batch);
         sprite5.draw(GAME.batch);
         sprite6.draw(GAME.batch);
-        sprite7.draw(GAME.batch);
+        //sprite7.draw(GAME.batch);
         sprite9.draw(GAME.batch);
-        sprite8.draw(GAME.batch);
+        //sprite8.draw(GAME.batch);
         sprite11.draw(GAME.batch);
         sprite12.draw(GAME.batch);
         GAME.batch.end();
@@ -252,11 +274,11 @@ public class GamePage implements Screen  {
 
         GAME.batch.begin();
         sprite10.draw(GAME.batch);
-        sprite13.draw(GAME.batch);
+        //sprite13.draw(GAME.batch);
         sprite4.draw(GAME.batch);
         GAME.getPlayer1().getTank().getSprite3().draw(GAME.batch);
         //sprite3.setOrigin(25, 100);
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)){
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && width1<=246){
             try {
                 try {
                     tank1x = GAME.getPlayer1().getTank().moveRight(tank1x);
@@ -273,7 +295,7 @@ public class GamePage implements Screen  {
             } catch (OutOfBounds e) {
                 tank1x -= 1f;
             }
-        }if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)){
+        }if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && width1<=246){
             try {
                 try {
                     tank1x = GAME.getPlayer1().getTank().moveLeft(tank1x);
@@ -312,7 +334,34 @@ public class GamePage implements Screen  {
         }
 //        sprite4.setRotation(0);
         GAME.batch.end();
-
+        //fuel start
+        //for player1
+        shape1.begin(ShapeRenderer.ShapeType.Filled);
+        shape1.rect(200,450,246,30);
+        shape1.setColor(Color.YELLOW);
+        shape1.end();
+        shape2.begin(ShapeRenderer.ShapeType.Filled);
+        shape2.setColor(Color.BLACK);
+        if((Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) && width1<=246){
+            width1+=1;
+        }
+        shape2.rect(200,450,width1,30);
+        shape2.end();
+        //for player2
+        shape3.begin(ShapeRenderer.ShapeType.Filled);
+        shape3.rect(523,450,246,30);
+        shape3.setColor(Color.YELLOW);
+        shape3.end();
+        shape4.begin(ShapeRenderer.ShapeType.Filled);
+        shape4.setColor(Color.BLACK);
+        if((Gdx.input.isKeyPressed(Input.Keys.M) || Gdx.input.isKeyPressed(Input.Keys.N)) && width2<=246){
+            width2+=1;
+        }
+        shape4.rect(523,450,width2,30);
+        shape4.end();
+        //fuel end
+        //health bar start
+        //healthbar  end
         if(Gdx.input.isTouched()) {
             Vector2 tmp = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Rectangle set = new Rectangle(20, 20, 60, 60);
