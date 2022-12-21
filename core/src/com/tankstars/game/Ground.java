@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 public class Ground{
@@ -15,13 +16,22 @@ public class Ground{
 
     ShapeRenderer shape;
     private static int chosen;
+    private static Ground gd = null;
+    public static Ground getInstance()
+    {
+        if (gd == null) {
+            gd = new Ground();
+        }
+        return gd;
+    }
 
-    Ground(){
+    private Ground(){
         shape = new ShapeRenderer();
         int a = (int) (Math.random()*3);
         setChosen(a);
     }
     private ArrayList<Float> coordinates = new ArrayList<>();
+    Iterator ite= coordinates.iterator();
 
     public static void setChosen(int c) {
         chosen = c;
@@ -67,7 +77,7 @@ public class Ground{
         shape.begin(ShapeRenderer.ShapeType.Filled);
         shape.setColor(Color.BROWN);
         for(int i =0;i<Gdx.graphics.getWidth();i++){
-            shape.rect(i,0,1,coordinates.get(i));
+            if(ite.hasNext())shape.rect(i,0,1,coordinates.get(i));
         }
         shape.end();
         //System.out.println(coordinates.get(100));

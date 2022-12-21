@@ -77,7 +77,7 @@ public class GamePage implements Screen  {
     public Sprite trajectorySprite;
     public ProjectileEquation projectileEquation;
     public GamePage(TankStars a){
-        grd = new Ground();
+        grd = Ground.getInstance();
         this.GAME = a;
         player1 = new PlayerInfo(this,tank1,grd);
         a.setPlayer1(player1);

@@ -12,8 +12,8 @@ public class TankStars extends Game {
 	PlayerInfo player2;
 	@Override
 	public void create () {
-		player1 = new PlayerInfo(new GamePage(this),new Tank(100,100,"Abrams"),new Ground());
-		player2 = new PlayerInfo(new GamePage(this),new Tank(100,100,"Abrams"),new Ground());
+		player1 = new PlayerInfo(new GamePage(this),new Tank(100,100,"Abrams"),Ground.getInstance());
+		player2 = new PlayerInfo(new GamePage(this),new Tank(100,100,"Abrams"),Ground.getInstance());
 		batch = new SpriteBatch();
 		this.setScreen(new HomePage(this));
 	}
