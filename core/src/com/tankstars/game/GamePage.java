@@ -316,7 +316,7 @@ public class GamePage implements Screen  {
         }
         //sprite4.setOrigin(sprite4.getWidth(),sprite4.getHeight());
         if(playerflag) {
-            if (Gdx.input.isKeyPressed(Input.Keys.M) && tank2x <= Gdx.graphics.getWidth()) {
+            if (Gdx.input.isKeyPressed(Input.Keys.M) && width2<=246) {
                 float beforey = tank2y;
                 tank2x -= 1f;
                 tank2y = grd.get_y(tank2x);
@@ -325,7 +325,7 @@ public class GamePage implements Screen  {
 //            sprite4.rotate((float) Math.atan(angle));
 //            sprite4.setOrigin(0,0);
             }
-            if (Gdx.input.isKeyPressed(Input.Keys.N)) {
+            if (Gdx.input.isKeyPressed(Input.Keys.N) && width2<=246) {
                 float beforey = tank2y;
                 tank2x += 1f;
                 tank2y = grd.get_y(tank2x);
@@ -339,38 +339,15 @@ public class GamePage implements Screen  {
 //        sprite4.setRotation(0);
         GAME.batch.end();
         //fuel start
-        //for player1
-        shape1.begin(ShapeRenderer.ShapeType.Filled);
-        shape1.rect(200,450,246,30);
-        shape1.setColor(Color.YELLOW);
-        shape1.end();
-        shape2.begin(ShapeRenderer.ShapeType.Filled);
-        shape2.setColor(Color.BLACK);
-        if((Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) && width1<=246 && !playerflag){
-            width1+=1;
-        }
-        shape2.rect(200,450,width1,30);
-        shape2.end();
-        //for player2
-        shape3.begin(ShapeRenderer.ShapeType.Filled);
-        shape3.rect(523,450,246,30);
-        shape3.setColor(Color.YELLOW);
-        shape3.end();
-        shape4.begin(ShapeRenderer.ShapeType.Filled);
-        shape4.setColor(Color.BLACK);
-        if((Gdx.input.isKeyPressed(Input.Keys.M) || Gdx.input.isKeyPressed(Input.Keys.N)) && width2<=246 && playerflag){
-            width2+=1;
-        }
-        shape4.rect(523,450,width2,30);
-        shape4.end();
-        //fuel end
+        fuelbar1();
+        fuelbar2();
         //health bar start
         //healthbar  end
         if(Gdx.input.isTouched()) {
             Vector2 tmp = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Rectangle set = new Rectangle(20, 20, 60, 60);
             Rectangle menu = new Rectangle(900, 20, 60, 60);
-            Rectangle fire = new Rectangle(550, 160, 104, 50);
+            Rectangle fire = new Rectangle(550, 200, 104, 50);
             if (set.contains(tmp.x, tmp.y)) {
                 GAME.goToSettings(this);
             }
@@ -380,8 +357,14 @@ public class GamePage implements Screen  {
 
             if (fire.contains(tmp.x, tmp.y)) {
                 //if (tank2.getSprite3().getBoundingRectangle().contains(projectilefinalx, projectilefinaly)) {
-                    if(playerflag==false)playerflag= true;
-                    else playerflag=false;
+                    if(playerflag==false){
+                        playerflag= true;
+                        fuelbar2();
+                    }
+                    else{
+                        playerflag=false;
+                        fuelbar1();
+                    }
                     //GAME.goToHomePage();
                 //}
             }
@@ -425,7 +408,35 @@ public class GamePage implements Screen  {
         draw();
 
     }
-
+    public void fuelbar1(){
+        //for player1
+        shape1.begin(ShapeRenderer.ShapeType.Filled);
+        shape1.rect(200,450,246,30);
+        shape1.setColor(Color.YELLOW);
+        shape1.end();
+        shape2.begin(ShapeRenderer.ShapeType.Filled);
+        shape2.setColor(Color.BLACK);
+        if((Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) && width1<=246 && !playerflag){
+            width1+=1;
+        }
+        shape2.rect(200,450,width1,30);
+        shape2.end();
+        //for player2
+    }
+    public void fuelbar2(){
+        shape3.begin(ShapeRenderer.ShapeType.Filled);
+        shape3.rect(523,450,246,30);
+        shape3.setColor(Color.YELLOW);
+        shape3.end();
+        shape4.begin(ShapeRenderer.ShapeType.Filled);
+        shape4.setColor(Color.BLACK);
+        if((Gdx.input.isKeyPressed(Input.Keys.M) || Gdx.input.isKeyPressed(Input.Keys.N)) && width2<=246 && playerflag){
+            width2+=1;
+        }
+        shape4.rect(523,450,width2,30);
+        shape4.end();
+        //fuel end
+    }
     @Override
     public void resize(int width, int height) {
 
