@@ -16,6 +16,7 @@ import com.badlogic.gdx.math.Vector2;
 import static java.lang.System.exit;
 
 public class GamePage implements Screen  {
+    public boolean playerflag= false;
     float width1 = 1;
     float width2 = 1;
     float width3 = 1;
@@ -278,7 +279,7 @@ public class GamePage implements Screen  {
         sprite4.draw(GAME.batch);
         GAME.getPlayer1().getTank().getSprite3().draw(GAME.batch);
         //sprite3.setOrigin(25, 100);
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && width1<=246){
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && width1<=246 && !playerflag){
             try {
                 try {
                     tank1x = GAME.getPlayer1().getTank().moveRight(tank1x);
@@ -295,7 +296,7 @@ public class GamePage implements Screen  {
             } catch (OutOfBounds e) {
                 tank1x -= 1f;
             }
-        }if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && width1<=246){
+        }if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && width1<=246 && !playerflag){
             try {
                 try {
                     tank1x = GAME.getPlayer1().getTank().moveLeft(tank1x);
@@ -314,23 +315,26 @@ public class GamePage implements Screen  {
             }
         }
         //sprite4.setOrigin(sprite4.getWidth(),sprite4.getHeight());
-        if(Gdx.input.isKeyPressed(Input.Keys.M) && tank2x<=Gdx.graphics.getWidth()){
-            float beforey = tank2y;
-            tank2x-= 1f;
-            tank2y = grd.get_y(tank2x);
-            double angle = -tank2y+beforey ;
-            sprite4.setPosition(tank2x,tank2y);
+        if(playerflag) {
+            if (Gdx.input.isKeyPressed(Input.Keys.M) && tank2x <= Gdx.graphics.getWidth()) {
+                float beforey = tank2y;
+                tank2x -= 1f;
+                tank2y = grd.get_y(tank2x);
+                double angle = -tank2y + beforey;
+                sprite4.setPosition(tank2x, tank2y);
 //            sprite4.rotate((float) Math.atan(angle));
 //            sprite4.setOrigin(0,0);
-        }if(Gdx.input.isKeyPressed(Input.Keys.N)){
-            float beforey = tank2y;
-            tank2x+= 1f;
-            tank2y = grd.get_y(tank2x);
-            double angle = tank2y-beforey ;
-            sprite4.setPosition(tank2x,tank2y);
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.N)) {
+                float beforey = tank2y;
+                tank2x += 1f;
+                tank2y = grd.get_y(tank2x);
+                double angle = tank2y - beforey;
+                sprite4.setPosition(tank2x, tank2y);
 //            sprite4.setRotation(20);
 //            sprite4.setRotation((float) Math.atan(angle));
 //            sprite4.setOrigin(0,0);
+            }
         }
 //        sprite4.setRotation(0);
         GAME.batch.end();
@@ -342,7 +346,7 @@ public class GamePage implements Screen  {
         shape1.end();
         shape2.begin(ShapeRenderer.ShapeType.Filled);
         shape2.setColor(Color.BLACK);
-        if((Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) && width1<=246){
+        if((Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) && width1<=246 && !playerflag){
             width1+=1;
         }
         shape2.rect(200,450,width1,30);
@@ -354,7 +358,7 @@ public class GamePage implements Screen  {
         shape3.end();
         shape4.begin(ShapeRenderer.ShapeType.Filled);
         shape4.setColor(Color.BLACK);
-        if((Gdx.input.isKeyPressed(Input.Keys.M) || Gdx.input.isKeyPressed(Input.Keys.N)) && width2<=246){
+        if((Gdx.input.isKeyPressed(Input.Keys.M) || Gdx.input.isKeyPressed(Input.Keys.N)) && width2<=246 && playerflag){
             width2+=1;
         }
         shape4.rect(523,450,width2,30);
@@ -366,7 +370,7 @@ public class GamePage implements Screen  {
             Vector2 tmp = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Rectangle set = new Rectangle(20, 20, 60, 60);
             Rectangle menu = new Rectangle(900, 20, 60, 60);
-            Rectangle fire = new Rectangle(550, 300, 104, 50);
+            Rectangle fire = new Rectangle(550, 160, 104, 50);
             if (set.contains(tmp.x, tmp.y)) {
                 GAME.goToSettings(this);
             }
@@ -374,11 +378,13 @@ public class GamePage implements Screen  {
                 GAME.goToInGameMenu();
             }
 
-            /*if (fire.contains(tmp.x, tmp.y)) {
-                if (tank2.getSprite3().getBoundingRectangle().contains(projectilefinalx, projectilefinaly)) {
-                    System.out.println("hit successfull");
-                }
-            }*/
+            if (fire.contains(tmp.x, tmp.y)) {
+                //if (tank2.getSprite3().getBoundingRectangle().contains(projectilefinalx, projectilefinaly)) {
+                    if(playerflag==false)playerflag= true;
+                    else playerflag=false;
+                    //GAME.goToHomePage();
+                //}
+            }
         }
 
 
