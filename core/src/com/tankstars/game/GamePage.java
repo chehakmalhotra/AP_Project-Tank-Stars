@@ -13,6 +13,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+import java.security.Key;
+
 import static java.lang.System.exit;
 
 public class GamePage implements Screen  {
@@ -224,17 +226,20 @@ public class GamePage implements Screen  {
             projectileEquation.startPoint = new Vector2(tank1x, tank1y);
         }
     }
-    int projectilefinalx=0;
-    int projectilefinaly=0;
+    float projectilefinalx=0;
+    float projectilefinaly=0;
     public void draw(){
         float t = 0f;
         float x=0f;
         float y=0f;
-
         for (int i = 0; i<40; i++) {
             if(projectileEquation!=null){
             x =  projectileEquation.getX(t);
             y =  projectileEquation.getY(t);
+            if(i==39){
+                projectilefinalx = x;
+                projectilefinaly = y;
+            }
             }
             //System.out.println("x: " + x + " y: " + y);
             GAME.batch.begin();
@@ -341,8 +346,14 @@ public class GamePage implements Screen  {
         //fuel start
         fuelbar1();
         fuelbar2();
-        //health bar start
-        //healthbar  end
+        shape5.begin(ShapeRenderer.ShapeType.Filled);
+        shape5.rect(200,500,246,30);
+        shape5.setColor(Color.RED);
+        shape5.end();
+        shape6.begin(ShapeRenderer.ShapeType.Filled);
+        shape6.setColor(Color.BLACK);
+        shape6.rect(200,500,width3,30);
+        shape6.end();
         if(Gdx.input.isTouched()) {
             Vector2 tmp = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Rectangle set = new Rectangle(20, 20, 60, 60);
@@ -356,12 +367,22 @@ public class GamePage implements Screen  {
             }
 
             if (fire.contains(tmp.x, tmp.y)) {
+                this.projectile();
                 //if (tank2.getSprite3().getBoundingRectangle().contains(projectilefinalx, projectilefinaly)) {
-                    if(playerflag==false){
+                    if(!playerflag){
                         playerflag= true;
                         width2 = 1;
                     }
                     else{
+//                        float a = tank1y - 20;
+//                        float b = tank2y + 20;
+//                        float a1 = tank2x - 20;
+//                        float b1 = tank2x + 20;
+//                        System.out.println(projectilefinalx);
+//                        System.out.println(projectilefinaly);
+//                        if (projectilefinaly >= a && projectilefinaly <= b && projectilefinalx >= a1 && projectilefinalx <= b1) {
+//                            GAME.goToHomePage();
+//                        }
                         playerflag=false;
                         width1 = 1;
                     }
@@ -369,35 +390,21 @@ public class GamePage implements Screen  {
                 //}
             }
         }
-
-
-
-
-        /*if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-            System.out.println(tank2.getSprite3().getBoundingRectangle().x + " " + tank2.getSprite3().getBoundingRectangle().y);
-            System.out.println(projectilefinalx + " " + projectilefinaly);
-            if (tank2.getSprite3().getBoundingRectangle().contains(projectilefinalx, projectilefinaly)) {
-                System.out.println("hit successfull");
-            }
-
-        }*/
-
-
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
-            ye=ye+2;
+            ye=ye+1;
             //System.out.println(ye);
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.S)){
-            ye=ye-2;
+            ye=ye-1;
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.A)){
-            xe=xe-2;
+            xe=xe-1;
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
-            xe=xe+2;
+            xe=xe+1;
         }
 
 
@@ -436,6 +443,36 @@ public class GamePage implements Screen  {
         shape4.rect(523,450,width2,30);
         shape4.end();
         //fuel end
+    }
+    public void projectile(){
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            float a = tank2y - 50;
+            float b = tank2y + 50;
+            float a1 = tank2x - 50;
+            float b1 = tank2x + 50;
+//                        System.out.println(projectilefinalx);
+//                        System.out.println(projectilefinaly);
+            if (projectilefinaly >= a && projectilefinaly <= b && projectilefinalx >= a1 && projectilefinalx <= b1) {
+                width3+=1;
+                tank2x+=2;
+            }
+        }
+    }
+    public void healthbar1(int a){
+        shape5.begin(ShapeRenderer.ShapeType.Filled);
+        shape5.rect(200,500,246,30);
+        shape5.setColor(Color.RED);
+        shape5.end();
+        shape6.begin(ShapeRenderer.ShapeType.Filled);
+        shape6.setColor(Color.BLACK);
+        if(width3<=246){
+            if(a==0)width3+=0;
+            if(a==1)width3+=0.5;
+            if(a==2)width3+=1;
+            if(a==3)width3+=1.5;
+        }
+        shape6.rect(200,500,width3,30);
+        shape6.end();
     }
     @Override
     public void resize(int width, int height) {
