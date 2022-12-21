@@ -14,14 +14,14 @@ import com.badlogic.gdx.math.Vector2;
 import static java.lang.System.exit;
 
 public class GamePage implements Screen  {
-    Tank tank1;
-    Tank tank2;
+    Tank tank1 = new Tank(100, 100, "abrams");
+    Tank tank2= new Tank(100, 100, "abrams");
     //private SpriteBatch batch = new SpriteBatch();
     private final TankStars GAME;
     private Ground grd;
     private Texture ground;
     private Texture background;
-    private Texture tankk1;
+    //private Texture tankk1;
     private Texture tankk2;
     private Texture settings;
     private Texture GAMEmenu;
@@ -34,7 +34,7 @@ public class GamePage implements Screen  {
     private Texture angle;
     private Sprite sprite1;
     private Sprite sprite2;
-    private Sprite sprite3;
+    //private Sprite sprite3;
     private Sprite sprite4;
     private Sprite sprite5;
     private Sprite sprite6;
@@ -62,7 +62,7 @@ public class GamePage implements Screen  {
         this.GAME = a;
         ground = new Texture(Gdx.files.internal("Ground.png"));
         background = new Texture(Gdx.files.internal("GameBackground.png"));
-        tankk1 = new Texture(Gdx.files.internal("abrams(1).png"));
+        //tankk1 = new Texture(Gdx.files.internal("abrams(1).png"));
         tankk2 = new Texture(Gdx.files.internal("frost(1).png"));
         settings = new Texture(Gdx.files.internal("Icons/settings.png"));
         GAMEmenu = new Texture(Gdx.files.internal("Icons/menu.png"));
@@ -75,7 +75,7 @@ public class GamePage implements Screen  {
         fire = new Texture(Gdx.files.internal("buttons/fire.png"));
         sprite1 = new Sprite(ground);
         sprite2 = new Sprite(background);
-        sprite3 = new Sprite(tankk1);
+        //sprite3 = new Sprite(tankk1);
         sprite4 = new Sprite(tankk2);
         sprite5 = new Sprite(settings);
         sprite6 = new Sprite(GAMEmenu);
@@ -110,7 +110,7 @@ public class GamePage implements Screen  {
         tank1x = 100F;
         tank1y = grd.get_y(tank1x);
         //sprite3.setSize(120,115);
-        sprite3.setPosition(tank1x,tank1y);
+        if(tank1!=null)tank1.getSprite3().setPosition(tank1x,tank1y);
         //sprite3.rotate(6);
         //tank2
         tank2x = 570F;
@@ -121,7 +121,7 @@ public class GamePage implements Screen  {
         sprite4.flip(true,false);
         //fire
         sprite10.setSize(104,50);
-        sprite10.setPosition(550,50);
+        sprite10.setPosition(550,300);
         //power
         sprite11.setSize(78,50);
         sprite11.setPosition(50,250);
@@ -149,7 +149,9 @@ public class GamePage implements Screen  {
 
     }
 
-
+    public void setTank1(Tank tank1) {
+        this.tank1 = tank1;
+    }
 
     @Override
     public void show() {
@@ -175,21 +177,22 @@ public class GamePage implements Screen  {
 
     }*/
 
-    public void trajectorystuff(ProjectileEquation projectileEquation,int ye, int xe){
+    public void trajectorystuff(ProjectileEquation projectileEquation,int ye, int xe, int tank1x, int tank1y){
 
         if(projectileEquation!=null) {
             projectileEquation.gravity = -9.8f;
             projectileEquation.startVelocity.set(xe, ye);
-            projectileEquation.startPoint = new Vector2(80, 250);
+            projectileEquation.startPoint = new Vector2(tank1x, tank1y);
         }
     }
-
+    int projectilefinalx=0;
+    int projectilefinaly=0;
     public void draw(){
         float t = 0f;
         float x=0f;
         float y=0f;
 
-        for (int i = 0; i<7; i++) {
+        for (int i = 0; i<40; i++) {
             if(projectileEquation!=null){
             x =  projectileEquation.getX(t);
             y =  projectileEquation.getY(t);
@@ -204,6 +207,8 @@ public class GamePage implements Screen  {
 
             t += 0.25f;
         }
+        projectilefinalx=(int)x;
+        projectilefinaly=(int)y;
 
 
 
@@ -211,7 +216,7 @@ public class GamePage implements Screen  {
     }
 
     int ye=5;
-    int xe=200;
+    int xe=20;
     @Override
     public void render(float delta) {
 
@@ -233,16 +238,16 @@ public class GamePage implements Screen  {
         sprite10.draw(GAME.batch);
         sprite13.draw(GAME.batch);
         sprite4.draw(GAME.batch);
-        sprite3.draw(GAME.batch);
+        tank1.getSprite3().draw(GAME.batch);
         //sprite3.setOrigin(25, 100);
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && tank1x<=Gdx.graphics.getWidth()){
             tank1x+= 1f;
             tank1y = grd.get_y(tank1x);
-            sprite3.setPosition(tank1x,tank1y);
+            tank1.getSprite3().setPosition(tank1x,tank1y);
         }if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && tank1x>=0){
             tank1x-= 1f;
             tank1y = grd.get_y(tank1x);
-            sprite3.setPosition(tank1x,tank1y);
+            tank1.getSprite3().setPosition(tank1x,tank1y);
         }
         //sprite4.setOrigin(sprite4.getWidth(),sprite4.getHeight());
         if(Gdx.input.isKeyPressed(Input.Keys.M) && tank2x<=Gdx.graphics.getWidth()){
@@ -270,34 +275,53 @@ public class GamePage implements Screen  {
             Vector2 tmp = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Rectangle set = new Rectangle(20, 20, 60, 60);
             Rectangle menu = new Rectangle(900, 20, 60, 60);
+            Rectangle fire = new Rectangle(550, 300, 104, 50);
             if (set.contains(tmp.x, tmp.y)) {
                 GAME.goToSettings(this);
             }
             if (menu.contains(tmp.x, tmp.y)) {
                 GAME.goToInGameMenu();
             }
+
+            if (fire.contains(tmp.x, tmp.y)) {
+                if (tank2.getSprite3().getBoundingRectangle().contains(projectilefinalx, projectilefinaly)) {
+                    System.out.println("hit successfull");
+                }
+            }
         }
+
+
+
+
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
+            if (tank2.getSprite3().getBoundingRectangle().contains(projectilefinalx, projectilefinaly)) {
+                System.out.println("hit successfull");
+            }
+
+        }
+
+
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
-            ye=ye+10;
-            System.out.println(ye);
+            ye=ye+2;
+            //System.out.println(ye);
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.S)){
-            ye=ye-10;
+            ye=ye-2;
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.A)){
-            xe=xe-10;
+            xe=xe-2;
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
-            xe=xe+10;
+            xe=xe+2;
         }
 
 
 
 
-        trajectorystuff(projectileEquation, ye, xe);
+        trajectorystuff(projectileEquation, ye, xe, (int)tank1x+70, (int)tank1y+50);
 
         draw();
 

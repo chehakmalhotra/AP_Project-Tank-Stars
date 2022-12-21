@@ -156,7 +156,8 @@ public class Changetanks1 implements Screen {
 
     }
     public void createtank1(GamePage gamepage){
-        if(gamepage!=null)gamepage.tank1= new Tank(100,100,"abrams");
+        Tank tank = new Tank(100,100,"abrams");
+        if(gamepage!=null)gamepage.setTank1(tank);
     }
 
     @Override

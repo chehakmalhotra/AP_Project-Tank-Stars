@@ -10,7 +10,7 @@ public class ProjectileEquation
 
     public ProjectileEquation(){
         gravity = 9.8f;
-        startVelocity = new Vector2(200,0);
+        startVelocity = new Vector2(20,0);
         startPoint = new Vector2(80,250);
     }
 
