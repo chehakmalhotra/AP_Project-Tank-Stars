@@ -359,11 +359,11 @@ public class GamePage implements Screen  {
                 //if (tank2.getSprite3().getBoundingRectangle().contains(projectilefinalx, projectilefinaly)) {
                     if(playerflag==false){
                         playerflag= true;
-                        fuelbar2();
+                        width2 = 1;
                     }
                     else{
                         playerflag=false;
-                        fuelbar1();
+                        width1 = 1;
                     }
                     //GAME.goToHomePage();
                 //}
