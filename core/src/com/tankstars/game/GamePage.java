@@ -359,6 +359,14 @@ public class GamePage implements Screen  {
         shape6.setColor(Color.BLACK);
         shape6.rect(200,500,width3,30);
         shape6.end();
+        shape7.begin(ShapeRenderer.ShapeType.Filled);
+        shape7.rect(523,500,246,30);
+        shape7.setColor(Color.RED);
+        shape7.end();
+        shape8.begin(ShapeRenderer.ShapeType.Filled);
+        shape8.setColor(Color.BLACK);
+        shape8.rect(523,500,width4,30);
+        shape8.end();
         if(Gdx.input.isTouched()) {
             Vector2 tmp = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             Rectangle set = new Rectangle(20, 20, 60, 60);
@@ -372,22 +380,15 @@ public class GamePage implements Screen  {
             }
 
             if (fire.contains(tmp.x, tmp.y)) {
-                this.projectile();
+
                 //if (tank2.getSprite3().getBoundingRectangle().contains(projectilefinalx, projectilefinaly)) {
                     if(!playerflag){
+                        this.projectile1();
                         playerflag= true;
                         width2 = 1;
                     }
                     else{
-//                        float a = tank1y - 20;
-//                        float b = tank2y + 20;
-//                        float a1 = tank2x - 20;
-//                        float b1 = tank2x + 20;
-//                        System.out.println(projectilefinalx);
-//                        System.out.println(projectilefinaly);
-//                        if (projectilefinaly >= a && projectilefinaly <= b && projectilefinalx >= a1 && projectilefinalx <= b1) {
-//                            GAME.goToHomePage();
-//                        }
+                        this.projectile2();
                         playerflag=false;
                         width1 = 1;
                     }
@@ -462,7 +463,7 @@ public class GamePage implements Screen  {
         shape4.end();
         //fuel end
     }
-    public void projectile(){
+    public void projectile1(){
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             float a = tank2y - 50;
             float b = tank2y + 50;
@@ -473,6 +474,21 @@ public class GamePage implements Screen  {
             if (projectilefinaly >= a && projectilefinaly <= b && projectilefinalx >= a1 && projectilefinalx <= b1) {
                 width3+=1;
                 tank2x+=2;
+            }
+        }
+    }
+
+    public void projectile2(){
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            float a = tank1y - 50;
+            float b = tank1y + 50;
+            float a1 = tank1x - 50;
+            float b1 = tank1x + 50;
+//                        System.out.println(projectilefinalx);
+//                        System.out.println(projectilefinaly);
+            if (projectilefinaly >= a && projectilefinaly <= b && projectilefinalx >= a1 && projectilefinalx <= b1) {
+                width4+=1;
+                tank1x-=2;
             }
         }
     }
