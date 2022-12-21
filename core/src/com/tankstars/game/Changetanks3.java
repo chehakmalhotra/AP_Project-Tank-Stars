@@ -137,9 +137,9 @@ public class Changetanks3 implements Screen {
 //            if (play.contains(tmp.x, tmp.y)) {
 //                GAME.goToGAMEPage();
 //            }
-            if (choose.contains(tmp.x, tmp.y)) {
+            if(choose.contains(tmp.x,tmp.y)){
+                createtank3(GAME.player1.getGamePage());
                 GAME.goToPlayers();
-                createtank3(gamepage);
             }
 //            if(arrowR.contains(tmp.x,tmp.y)){
 //                GAME.goToChangetanks3();
@@ -155,10 +155,9 @@ public class Changetanks3 implements Screen {
 
     }
     public void createtank3(GamePage gamepage){
-        if(gamepage!=null)gamepage.tank1= new Tank(100,100,"abrams");
-
+        if(tank1flag)gamepage.setTank1(new Tank(100,100,"Helios"));
+        if(tank2flag)gamepage.setTank2(new Tank(100,100,"Helios"));
     }
-
     @Override
     public void resize(int width, int height) {
 

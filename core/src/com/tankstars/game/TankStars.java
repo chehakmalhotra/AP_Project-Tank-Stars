@@ -8,10 +8,29 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class TankStars extends Game {
 	SpriteBatch batch;
 	Texture img;
+	PlayerInfo player1;
+	PlayerInfo player2;
 	@Override
 	public void create () {
+		player1 = new PlayerInfo(new GamePage(this),new Tank(100,100,"Abrams"),new Ground());
+		player2 = new PlayerInfo(new GamePage(this),new Tank(100,100,"Abrams"),new Ground());
 		batch = new SpriteBatch();
 		this.setScreen(new HomePage(this));
+	}
+	public void setPlayer1(PlayerInfo player1) {
+		this.player1 = player1;
+	}
+
+	public void setPlayer2(PlayerInfo player2) {
+		this.player2 = player2;
+	}
+
+	public PlayerInfo getPlayer2() {
+		return player2;
+	}
+
+	public PlayerInfo getPlayer1() {
+		return player1;
 	}
 	public void goToMainPage(){
 		MainPage mp = new MainPage(this);

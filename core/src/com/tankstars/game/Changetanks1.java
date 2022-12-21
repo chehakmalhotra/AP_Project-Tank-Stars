@@ -142,8 +142,8 @@ public class Changetanks1 implements Screen {
 //                GAME.goToGAMEPage();
 //            }
             if(choose.contains(tmp.x,tmp.y)){
+                createtank1(GAME.player1.getGamePage());
                 GAME.goToPlayers();
-                createtank1(gamepage);
             }
             if(arrow.contains(tmp.x,tmp.y)){
                 GAME.goToChangetanks2();
@@ -156,8 +156,8 @@ public class Changetanks1 implements Screen {
 
     }
     public void createtank1(GamePage gamepage){
-        Tank tank = new Tank(100,100,"abrams");
-        if(gamepage!=null)gamepage.setTank1(tank);
+        if(tank1flag)gamepage.setTank1(new Tank(100,100,"Abrams"));
+        if(tank2flag)gamepage.setTank2(new Tank(100,100,"Abrams"));
     }
 
     @Override

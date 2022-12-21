@@ -36,4 +36,22 @@ public class Tank {
     public void setSprite3(Sprite sprite3) {
         this.sprite3 = sprite3;
     }
+    public float moveRight(float a) throws OutOfBounds{
+        a+=1f;
+        if(a> Gdx.graphics.getWidth()){
+            throw new OutOfBounds("Tank out of page");
+        }
+        return a;
+    }
+
+    public float moveLeft(float a) throws OutOfBounds{
+        a-=1f;
+        if(a< 0){
+            throw new OutOfBounds("Tank out of page");
+        }
+        return a;
+    }
+
+
+
 }

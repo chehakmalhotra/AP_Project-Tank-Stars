@@ -14,8 +14,10 @@ import com.badlogic.gdx.math.Vector2;
 import static java.lang.System.exit;
 
 public class GamePage implements Screen  {
-    Tank tank1 = new Tank(100, 100, "abrams");
-    Tank tank2= new Tank(100, 100, "abrams");
+    PlayerInfo player1;
+    PlayerInfo player2;
+    Tank tank1;
+    Tank tank2;
     //private SpriteBatch batch = new SpriteBatch();
     private final TankStars GAME;
     private Ground grd;
@@ -60,6 +62,10 @@ public class GamePage implements Screen  {
     public GamePage(TankStars a){
         grd = new Ground();
         this.GAME = a;
+        player1 = new PlayerInfo(this,tank1,grd);
+        a.setPlayer1(player1);
+        player2 = new PlayerInfo(this,tank2,grd);
+        a.setPlayer2(player2);
         ground = new Texture(Gdx.files.internal("Ground.png"));
         background = new Texture(Gdx.files.internal("GameBackground.png"));
         //tankk1 = new Texture(Gdx.files.internal("abrams(1).png"));
@@ -110,7 +116,13 @@ public class GamePage implements Screen  {
         tank1x = 100F;
         tank1y = grd.get_y(tank1x);
         //sprite3.setSize(120,115);
-        if(tank1!=null)tank1.getSprite3().setPosition(tank1x,tank1y);
+        try {
+            GAME.getPlayer1().getTank().getSprite3().setPosition(tank1x, tank1y);
+        }
+        catch (NullPointerException e){
+            GAME.getPlayer1().setTank(new Tank(100,100,"Abrams"));
+            GAME.getPlayer1().getTank().getSprite3().setPosition(tank1x, tank1y);
+        }
         //sprite3.rotate(6);
         //tank2
         tank2x = 570F;
@@ -151,8 +163,12 @@ public class GamePage implements Screen  {
 
     public void setTank1(Tank tank1) {
         this.tank1 = tank1;
+        player1.setTank(tank1);
     }
-
+    public void setTank2(Tank tank2) {
+        this.tank2 = tank2;
+        player2.setTank(tank2);
+    }
     @Override
     public void show() {
 
@@ -238,16 +254,42 @@ public class GamePage implements Screen  {
         sprite10.draw(GAME.batch);
         sprite13.draw(GAME.batch);
         sprite4.draw(GAME.batch);
-        tank1.getSprite3().draw(GAME.batch);
+        GAME.getPlayer1().getTank().getSprite3().draw(GAME.batch);
         //sprite3.setOrigin(25, 100);
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && tank1x<=Gdx.graphics.getWidth()){
-            tank1x+= 1f;
-            tank1y = grd.get_y(tank1x);
-            tank1.getSprite3().setPosition(tank1x,tank1y);
-        }if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && tank1x>=0){
-            tank1x-= 1f;
-            tank1y = grd.get_y(tank1x);
-            tank1.getSprite3().setPosition(tank1x,tank1y);
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)){
+            try {
+                try {
+                    tank1x = GAME.getPlayer1().getTank().moveRight(tank1x);
+                    tank1y = grd.get_y(tank1x);
+                    GAME.getPlayer1().getTank().getSprite3().setPosition(tank1x,tank1y);
+                }
+                catch (NullPointerException e){
+                    GAME.getPlayer1().setTank(new Tank(100,100,"Abrams"));
+                    tank1x = GAME.getPlayer1().getTank().moveRight(tank1x);
+                    tank1y = grd.get_y(tank1x);
+                    GAME.getPlayer1().getTank().getSprite3().setPosition(tank1x,tank1y);
+                }
+
+            } catch (OutOfBounds e) {
+                tank1x -= 1f;
+            }
+        }if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)){
+            try {
+                try {
+                    tank1x = GAME.getPlayer1().getTank().moveLeft(tank1x);
+                    tank1y = grd.get_y(tank1x);
+                    GAME.getPlayer1().getTank().getSprite3().setPosition(tank1x,tank1y);
+                }
+                catch (NullPointerException e){
+                    GAME.getPlayer1().setTank(new Tank(100,100,"Abrams"));
+                    tank1x = GAME.getPlayer1().getTank().moveLeft(tank1x);
+                    tank1y = grd.get_y(tank1x);
+                    GAME.getPlayer1().getTank().getSprite3().setPosition(tank1x,tank1y);
+                }
+
+            } catch (OutOfBounds e) {
+                tank1x += 1f;
+            }
         }
         //sprite4.setOrigin(sprite4.getWidth(),sprite4.getHeight());
         if(Gdx.input.isKeyPressed(Input.Keys.M) && tank2x<=Gdx.graphics.getWidth()){

@@ -27,6 +27,9 @@ public class players implements Screen {
     private final TankStars GAME;
     public players(TankStars a){
         this.GAME = a;
+        changetanks1 = new Changetanks1(a);
+        changetanks2 = new Changetanks2(a);
+        changetanks3 = new Changetanks3(a);
         background = new Texture(Gdx.files.internal("background.png"));
         player1 = new Texture(Gdx.files.internal("buttons/Player1.png"));
         player2 = new Texture(Gdx.files.internal("buttons/Player2.png"));
@@ -78,16 +81,16 @@ public class players implements Screen {
                 GAME.goToSettings(this);
             }
             if(p1.contains(tmp.x, tmp.y)){
+                changetanks1.setTank1flag(true);
+                changetanks2.setTank1flag(true);
+                changetanks3.setTank1flag(true);
                 GAME.goToChangetanks1();
-                if(changetanks1!=null)changetanks1.setTank1flag(true);
-                if(changetanks2!=null)changetanks2.setTank1flag(true);
-                if(changetanks3!=null)changetanks3.setTank1flag(true);
             }
             if(p2.contains(tmp.x, tmp.y)){
+                changetanks1.setTank2flag(true);
+                changetanks2.setTank2flag(true);
+                changetanks3.setTank2flag(true);
                 GAME.goToChangetanks1();
-                if(changetanks1!=null)changetanks1.setTank2flag(true);
-                if(changetanks2!=null)changetanks2.setTank2flag(true);
-                if(changetanks3!=null)changetanks3.setTank2flag(true);
             }
             if(play.contains(tmp.x, tmp.y)){
                 GAME.goToGamePage();
