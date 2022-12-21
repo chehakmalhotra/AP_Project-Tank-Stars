@@ -74,8 +74,12 @@ public class GamePage implements Screen  {
     private Texture targetTexture;
     Texture img;
 
-    public Sprite trajectorySprite;
+    public Sprite trajectorySprite1;
+
+    public Sprite trajectorySprite2;
     public ProjectileEquation projectileEquation;
+    public ProjectileEquation projectileEquationright;
+
     public GamePage(TankStars a){
         grd = Ground.getInstance();
         this.GAME = a;
@@ -173,13 +177,15 @@ public class GamePage implements Screen  {
         //img = new Texture("abrams.png");
         targetTexture = new Texture("ellipse.png");
 
-        trajectorySprite = new Sprite(targetTexture);
+        trajectorySprite1 = new Sprite(targetTexture);
+        trajectorySprite2 = new Sprite(targetTexture);
         //trajectorySprite.setSize(1, 1);
         //trajectorySprite.setPosition(5, 5);
         //sprite1= new Sprite(img);
         //sprite1.setSize(100,100);
         //sprite1.setPosition(80,150);
-        projectileEquation=new ProjectileEquation();
+        projectileEquation=new ProjectileEquation(20,0,80,250);
+        projectileEquationright=new ProjectileEquation(20,10,200,250);
 
 
         //guicam.position.set(480/2F, 320/2F, 0);
@@ -228,6 +234,10 @@ public class GamePage implements Screen  {
     }
     float projectilefinalx=0;
     float projectilefinaly=0;
+    float projectilefinalxright=0;
+    float projectilefinalyright=0;
+
+
     public void draw(){
         float t = 0f;
         float x=0f;
@@ -245,7 +255,7 @@ public class GamePage implements Screen  {
             GAME.batch.begin();
             GAME.batch.setColor(1, 0, 0, 1);
 
-            GAME.batch.draw(trajectorySprite, x, y, 10, 10);
+            GAME.batch.draw(trajectorySprite1, x, y, 10, 10);
             GAME.batch.end();
 
 
@@ -254,13 +264,39 @@ public class GamePage implements Screen  {
         //projectilefinalx=(int)x;
         //projectilefinaly=(int)y;
 
+        /*float x2=0f;
+        float y2=0f;
+
+        for (int i = 0; i<40; i++) {
+            if(projectileEquationright!=null){
+                x2 =  projectileEquationright.getX(t);
+                y2 =  projectileEquationright.getY(t);
+                if(i==39){
+                    projectilefinalxright = x2;
+                    projectilefinalyright = y2;
+                }
+            }
+            //System.out.println("x: " + x + " y: " + y);
+            GAME.batch.begin();
+            GAME.batch.setColor(0, 1, 0, 1);
+
+            GAME.batch.draw(trajectorySprite2, x2, y2, 10, 10);
+            GAME.batch.end();
+
+
+            t += 0.25f;*/
+        }
 
 
 
-    }
+
+
 
     int ye=5;
     int xe=20;
+
+    int yer=5;
+    int xer=-20;
     @Override
     public void render(float delta) {
 
@@ -392,27 +428,40 @@ public class GamePage implements Screen  {
         }
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
             ye=ye+1;
+
+            if(playerflag)yer=yer+1;
             //System.out.println(ye);
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.S)){
             ye=ye-1;
+
+            if(playerflag)yer=yer-1;
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.A)){
             xe=xe-1;
+
+            if(playerflag)xer=xer+1;
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
             xe=xe+1;
+
+            if(playerflag)xer=xer-1;
         }
 
 
 
 
-        trajectorystuff(projectileEquation, ye, xe, (int)tank1x+70, (int)tank1y+50);
+        if(!playerflag){trajectorystuff(projectileEquation, ye, xe, (int)tank1x+70, (int)tank1y+50);
+            draw();}
+        if(playerflag){trajectorystuff(projectileEquation, ye, -xe, (int)tank2x+70, (int)tank2y+50);
+            draw();}
+        //trajectorystuff(projectileEquationright, yer, xer, 800, 400);draw();
 
-        draw();
+
+       
 
     }
     public void fuelbar1(){
