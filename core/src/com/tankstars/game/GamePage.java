@@ -374,11 +374,11 @@ public class GamePage implements Screen  {
                 GAME.goToInGameMenu();
             }
 
-            if (fire.contains(tmp.x, tmp.y)) {
+            /*if (fire.contains(tmp.x, tmp.y)) {
                 if (tank2.getSprite3().getBoundingRectangle().contains(projectilefinalx, projectilefinaly)) {
                     System.out.println("hit successfull");
                 }
-            }
+            }*/
         }
 
 
