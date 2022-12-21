@@ -384,14 +384,14 @@ public class GamePage implements Screen  {
 
 
 
-        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
+        /*if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
             System.out.println(tank2.getSprite3().getBoundingRectangle().x + " " + tank2.getSprite3().getBoundingRectangle().y);
             System.out.println(projectilefinalx + " " + projectilefinaly);
             if (tank2.getSprite3().getBoundingRectangle().contains(projectilefinalx, projectilefinaly)) {
                 System.out.println("hit successfull");
             }
 
-        }
+        }*/
 
 
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
