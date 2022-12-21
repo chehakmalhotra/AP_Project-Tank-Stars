@@ -16,6 +16,7 @@ import com.badlogic.gdx.math.Vector2;
 import java.security.Key;
 
 import static java.lang.System.exit;
+import static java.lang.Thread.sleep;
 
 public class GamePage implements Screen  {
     public boolean playerflag= false;
@@ -50,6 +51,8 @@ public class GamePage implements Screen  {
     private Texture fuel;
     private Texture power;
     private Texture angle;
+    private Texture player1win;
+    private Texture player2win;
     private Sprite sprite1;
     private Sprite sprite2;
     //private Sprite sprite3;
@@ -63,6 +66,8 @@ public class GamePage implements Screen  {
     private Sprite sprite11;
     private Sprite sprite12;
     private Sprite sprite13;
+    private Sprite sprite14;
+    private Sprite sprite15;
     //private float y;
     private OrthographicCamera cam;
 
@@ -103,6 +108,8 @@ public class GamePage implements Screen  {
         angle = new Texture(Gdx.files.internal("Icons/angle.png"));
         fuel = new Texture(Gdx.files.internal("Icons/fuel.png"));
         fire = new Texture(Gdx.files.internal("buttons/fire.png"));
+        player1win = new Texture(Gdx.files.internal("player1.png"));
+        player2win = new Texture(Gdx.files.internal("player2.png"));
         sprite1 = new Sprite(ground);
         sprite2 = new Sprite(background);
         //sprite3 = new Sprite(tankk1);
@@ -116,6 +123,8 @@ public class GamePage implements Screen  {
         sprite11 = new Sprite(power);
         sprite12 = new Sprite(angle);
         sprite13 = new Sprite(fuel);
+        sprite14 = new Sprite(player1win);
+        sprite15 = new Sprite(player2win);
         sprite2.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
        // tank1.
         //ground
@@ -431,10 +440,26 @@ public class GamePage implements Screen  {
         //trajectorystuff(projectileEquationright, yer, xer, 800, 400);draw();
 
         if(width3==246){
+            GAME.batch.begin();
+            sprite14.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            GAME.batch.end();
+            try {
+                sleep(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             //sprite player1 wins
             GAME.goToMainPage();
         }
         if(width4==246){
+            GAME.batch.begin();
+            sprite15.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            GAME.batch.end();
+            try {
+                sleep(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             //sprite player2 wins
             GAME.goToMainPage();
         }
@@ -472,14 +497,14 @@ public class GamePage implements Screen  {
     }
     public void projectile1(){
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-            float a = tank2y - 50;
-            float b = tank2y + 50;
-            float a1 = tank2x - 50;
-            float b1 = tank2x + 50;
+            float a = tank2y - 100;
+            float b = tank2y + 100;
+            float a1 = tank2x - 100;
+            float b1 = tank2x + 100;
 //                        System.out.println(projectilefinalx);
 //                        System.out.println(projectilefinaly);
             if (projectilefinaly >= a && projectilefinaly <= b && projectilefinalx >= a1 && projectilefinalx <= b1) {
-                width3+=1;
+                width3+=2;
                 tank2x+=2;
             }
         }
@@ -487,14 +512,14 @@ public class GamePage implements Screen  {
 
     public void projectile2(){
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-            float a = tank1y - 50;
-            float b = tank1y + 50;
-            float a1 = tank1x - 50;
-            float b1 = tank1x + 50;
+            float a = tank1y - 100;
+            float b = tank1y + 100;
+            float a1 = tank1x - 100;
+            float b1 = tank1x + 100;
 //                        System.out.println(projectilefinalx);
 //                        System.out.println(projectilefinaly);
             if (projectilefinaly >= a && projectilefinaly <= b && projectilefinalx >= a1 && projectilefinalx <= b1) {
-                width4+=1;
+                width4+=2;
                 tank1x-=2;
             }
         }
