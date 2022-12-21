@@ -81,18 +81,37 @@ public class players implements Screen {
                 GAME.goToSettings(this);
             }
             if(p1.contains(tmp.x, tmp.y)){
-                changetanks1.setTank1flag(true);
-                changetanks2.setTank1flag(true);
-                changetanks3.setTank1flag(true);
+                if((!changetanks1.getTank1flag() && changetanks2.isTank1flag()) ||(!changetanks1.getTank1flag() && !changetanks2.isTank1flag())) {
+                    changetanks1.setTank1flag(true);
+                    changetanks2.setTank1flag(true);
+                    changetanks3.setTank1flag(true);
+                    changetanks1.setTank2flag(false);
+                    changetanks2.setTank2flag(false);
+                    changetanks3.setTank2flag(false);
+                }
                 GAME.goToChangetanks1();
             }
             if(p2.contains(tmp.x, tmp.y)){
-                changetanks1.setTank2flag(true);
-                changetanks2.setTank2flag(true);
-                changetanks3.setTank2flag(true);
+                if((changetanks1.getTank1flag() && !changetanks2.isTank1flag()) || (!changetanks1.getTank1flag() && !changetanks2.isTank1flag())){
+                    changetanks1.setTank2flag(true);
+                    changetanks2.setTank2flag(true);
+                    changetanks3.setTank2flag(true);
+                    changetanks1.setTank1flag(false);
+                    changetanks2.setTank1flag(false);
+                    changetanks3.setTank1flag(false);
+                }
                 GAME.goToChangetanks1();
             }
             if(play.contains(tmp.x, tmp.y)){
+                try{
+                    if(GAME.info.getTank1() == null && GAME.info.getTank2() == null){
+                        throw new ChooseDefault("setting default tanks");
+                    }
+                }
+                catch (ChooseDefault e){
+                    GAME.info.setTank1(new Abrams(100,100,"Abrams"));
+                    GAME.info.setTank2(new Abrams(100,100,"Abrams"));
+                }
                 GAME.goToGamePage();
             }
 

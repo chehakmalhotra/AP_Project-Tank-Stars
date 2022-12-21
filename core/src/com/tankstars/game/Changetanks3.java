@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.ScreenUtils;
 
 public class Changetanks3 implements Screen {
     private final TankStars GAME;
@@ -138,7 +137,8 @@ public class Changetanks3 implements Screen {
 //                GAME.goToGAMEPage();
 //            }
             if(choose.contains(tmp.x,tmp.y)){
-                createtank3(GAME.player1.getGamePage());
+                if(tank1flag)GAME.info.setTank1(new Helios(100,100,"Helios"));
+                if(tank2flag)GAME.info.setTank2(new Helios(100,100,"Helios"));
                 GAME.goToPlayers();
             }
 //            if(arrowR.contains(tmp.x,tmp.y)){
@@ -154,10 +154,10 @@ public class Changetanks3 implements Screen {
         }
 
     }
-    public void createtank3(GamePage gamepage){
-        if(tank1flag)gamepage.setTank1(new Tank(100,100,"Helios"));
-        if(tank2flag)gamepage.setTank2(new Tank(100,100,"Helios"));
-    }
+//    public void createtank3(GamePage gamepage){
+//        if(tank1flag)gamepage.setTank1(new Tank(100,100,"Helios"));
+//        if(tank2flag)gamepage.setTank2(new Tank(100,100,"Helios"));
+//    }
     @Override
     public void resize(int width, int height) {
 

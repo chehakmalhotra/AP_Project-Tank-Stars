@@ -23,8 +23,7 @@ public class GamePage implements Screen  {
     float width2 = 1;
     float width3 = 1;
     float width4 = 1;
-    PlayerInfo player1;
-    PlayerInfo player2;
+
     Tank tank1;
     Tank tank2;
     ShapeRenderer shape1;
@@ -81,12 +80,8 @@ public class GamePage implements Screen  {
     public ProjectileEquation projectileEquationright;
 
     public GamePage(TankStars a){
-        grd = Ground.getInstance();
         this.GAME = a;
-        player1 = new PlayerInfo(this,tank1,grd);
-        a.setPlayer1(player1);
-        player2 = new PlayerInfo(this,tank2,grd);
-        a.setPlayer2(player2);
+        grd = a.info.getGrd();
         shape1 = new ShapeRenderer();
         shape2 = new ShapeRenderer();
         shape3 = new ShapeRenderer();
@@ -144,22 +139,12 @@ public class GamePage implements Screen  {
         //tank1
         tank1x = 100F;
         tank1y = grd.get_y(tank1x);
-        //sprite3.setSize(120,115);
-        try {
-            GAME.getPlayer1().getTank().getSprite3().setPosition(tank1x, tank1y);
-        }
-        catch (NullPointerException e){
-            GAME.getPlayer1().setTank(new Tank(100,100,"Abrams"));
-            GAME.getPlayer1().getTank().getSprite3().setPosition(tank1x, tank1y);
-        }
         //sprite3.rotate(6);
         //tank2
         tank2x = 570F;
         tank2y = grd.get_y(tank2x);
         //sprite4.setSize(213,115);
-        sprite4.setPosition(tank2x,tank2y);
-
-        sprite4.flip(true,false);
+        GAME.info.getTank2().getSprite3().flip(true,false);
         //fire
         sprite10.setSize(104,50);
         sprite10.setPosition(550,300);
@@ -192,14 +177,14 @@ public class GamePage implements Screen  {
 
     }
 
-    public void setTank1(Tank tank1) {
-        this.tank1 = tank1;
-        player1.setTank(tank1);
-    }
-    public void setTank2(Tank tank2) {
-        this.tank2 = tank2;
-        player2.setTank(tank2);
-    }
+//    public void setTank1(Tank tank1) {
+//        this.tank1 = tank1;
+//        player1.setTank(tank1);
+//    }
+//    public void setTank2(Tank tank2) {
+//        this.tank2 = tank2;
+//        player2.setTank(tank2);
+//    }
     @Override
     public void show() {
 
@@ -317,40 +302,26 @@ public class GamePage implements Screen  {
         GAME.batch.begin();
         sprite10.draw(GAME.batch);
         //sprite13.draw(GAME.batch);
-        sprite4.draw(GAME.batch);
-        GAME.getPlayer1().getTank().getSprite3().draw(GAME.batch);
+        GAME.info.getTank1().getSprite3().draw(GAME.batch);
+        GAME.info.getTank1().getSprite3().setPosition(tank1x,tank1y);
+        GAME.info.getTank2().getSprite3().draw(GAME.batch);
+        GAME.info.getTank2().getSprite3().setPosition(tank2x,tank2y);
+
         //sprite3.setOrigin(25, 100);
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && width1<=246 && !playerflag){
             try {
-                try {
-                    tank1x = GAME.getPlayer1().getTank().moveRight(tank1x);
-                    tank1y = grd.get_y(tank1x);
-                    GAME.getPlayer1().getTank().getSprite3().setPosition(tank1x,tank1y);
-                }
-                catch (NullPointerException e){
-                    GAME.getPlayer1().setTank(new Tank(100,100,"Abrams"));
-                    tank1x = GAME.getPlayer1().getTank().moveRight(tank1x);
-                    tank1y = grd.get_y(tank1x);
-                    GAME.getPlayer1().getTank().getSprite3().setPosition(tank1x,tank1y);
-                }
+                tank1x = GAME.info.getTank1().moveRight(tank1x);
+                tank1y = grd.get_y(tank1x);
+                GAME.info.getTank1().getSprite3().setPosition(tank1x,tank1y);
 
             } catch (OutOfBounds e) {
                 tank1x -= 1f;
             }
         }if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && width1<=246 && !playerflag){
             try {
-                try {
-                    tank1x = GAME.getPlayer1().getTank().moveLeft(tank1x);
-                    tank1y = grd.get_y(tank1x);
-                    GAME.getPlayer1().getTank().getSprite3().setPosition(tank1x,tank1y);
-                }
-                catch (NullPointerException e){
-                    GAME.getPlayer1().setTank(new Tank(100,100,"Abrams"));
-                    tank1x = GAME.getPlayer1().getTank().moveLeft(tank1x);
-                    tank1y = grd.get_y(tank1x);
-                    GAME.getPlayer1().getTank().getSprite3().setPosition(tank1x,tank1y);
-                }
-
+                tank1x = GAME.info.getTank1().moveLeft(tank1x);
+                tank1y = grd.get_y(tank1x);
+                GAME.info.getTank1().getSprite3().setPosition(tank1x,tank1y);
             } catch (OutOfBounds e) {
                 tank1x += 1f;
             }
@@ -358,26 +329,24 @@ public class GamePage implements Screen  {
         //sprite4.setOrigin(sprite4.getWidth(),sprite4.getHeight());
         if(playerflag) {
             if (Gdx.input.isKeyPressed(Input.Keys.M) && width2<=246) {
-                float beforey = tank2y;
-                tank2x -= 1f;
+                try {
+                    tank2x = GAME.info.getTank2().moveLeft(tank2x);
+                } catch (OutOfBounds e) {
+                    tank2x+=1f;
+                }
                 tank2y = grd.get_y(tank2x);
-                double angle = -tank2y + beforey;
-                sprite4.setPosition(tank2x, tank2y);
-//            sprite4.rotate((float) Math.atan(angle));
-//            sprite4.setOrigin(0,0);
+                GAME.info.getTank2().getSprite3().setPosition(tank2x,tank2y);
             }
             if (Gdx.input.isKeyPressed(Input.Keys.N) && width2<=246) {
-                float beforey = tank2y;
-                tank2x += 1f;
+                try {
+                    tank2x = GAME.info.getTank2().moveRight(tank2x);
+                } catch (OutOfBounds e) {
+                    tank2x-=1f;
+                }
                 tank2y = grd.get_y(tank2x);
-                double angle = tank2y - beforey;
-                sprite4.setPosition(tank2x, tank2y);
-//            sprite4.setRotation(20);
-//            sprite4.setRotation((float) Math.atan(angle));
-//            sprite4.setOrigin(0,0);
+                GAME.info.getTank2().getSprite3().setPosition(tank2x,tank2y);
             }
         }
-//        sprite4.setRotation(0);
         GAME.batch.end();
         //fuel start
         fuelbar1();
